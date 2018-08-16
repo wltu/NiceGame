@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://WorldLevel/World Complete.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=3]
+
+[node name="World2" type="Node"]
+
+[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+
+position = Vector2( 64, 192 )
+world_scene = "res://WorldLevel/World2.tscn"
+
+[node name="World Complete" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 512, 256 )
+next_world = "res://WorldLevel/WorldWin.tscn"
+
+[node name="AutoTile" type="TileMap" parent="." index="2"]
+
+mode = 0
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -262152, 0, 196613, -196615, 0, 5, -131079, 0, 131077, -1, 0, 6, -65536, 0, 196609, -65535, 0, 196609, -65534, 0, 196609, -65533, 0, 196609, -65532, 0, 196609, -65531, 0, 196609, -65530, 0, 196609, -65529, 0, 196609, -65528, 0, 196609, -65527, 0, 196609, -65526, 0, 196609, -65525, 0, 10, -65524, 0, 2, 65535, 0, 65541, 11, 0, 131073, 12, 0, 131074, 131071, 0, 65541, 65542, 0, 6, 65543, 0, 196609, 65544, 0, 7, 65547, 0, 65537, 65548, 0, 65545, 196607, 0, 65541, 131077, 0, 1, 131078, 0, 11, 131080, 0, 131077, 131084, 0, 65541, 262143, 0, 65541, 196612, 0, 1, 196613, 0, 65540, 196614, 0, 131074, 196620, 0, 65541, 327679, 0, 8, 262144, 0, 65536, 262145, 0, 65536, 262146, 0, 65536, 262147, 0, 65536, 262148, 0, 65540, 262149, 0, 196619, 262150, 0, 131074, 262153, 0, 1, 262154, 0, 65536, 262155, 0, 65536, 262156, 0, 11, 393215, 0, 65537, 327680, 0, 131072, 327681, 0, 131072, 327682, 0, 131072, 327683, 0, 131072, 327684, 0, 131072, 327685, 0, 131072, 327686, 0, 65547, 327687, 0, 196609, 327688, 0, 196609, 327689, 0, 65544, 327690, 0, 131072, 327691, 0, 131072, 327692, 0, 65538 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+

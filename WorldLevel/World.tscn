@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://WorldLevel/World Complete.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=3]
+[ext_resource path="res://Sprites/Sprites/Tiles/DirtTileSet.tres" type="TileSet" id=4]
+
+[node name="World" type="Node" index="0"]
+
+[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+
+position = Vector2( 96, 32 )
+world_scene = "res://WorldLevel/World.tscn"
+
+[node name="World Complete" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 544, 96 )
+next_world = "res://WorldLevel/World2.tscn"
+
+[node name="AutoTile" type="TileMap" parent="." index="2"]
+
+mode = 0
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -65537, 0, 6, -131072, 0, 196609, -131071, 0, 196609, -131070, 0, 196609, -131069, 0, 196609, -131068, 0, 196609, -131067, 0, 196609, -131066, 0, 196609, -131065, 0, 196609, -131064, 0, 196609, -131063, 0, 196609, -131062, 0, 196609, -131061, 0, 196609, -131060, 0, 196609, -131059, 0, 196609, -131058, 0, 196609, -131057, 0, 7, -1, 0, 65541, -65521, 0, 65541, 65535, 0, 65541, 7, 0, 196608, 8, 0, 196609, 9, 0, 7, 15, 0, 65541, 131071, 0, 65541, 65538, 0, 196608, 65539, 0, 196609, 65540, 0, 196609, 65541, 0, 196610, 65545, 0, 65541, 65551, 0, 65541, 196607, 0, 8, 131072, 0, 2, 131080, 0, 1, 131081, 0, 11, 131085, 0, 196608, 131086, 0, 10, 131087, 0, 11, 262143, 0, 131073, 196608, 0, 65539, 196609, 0, 65536, 196610, 0, 65536, 196611, 0, 65536, 196612, 0, 65536, 196613, 0, 65536, 196614, 0, 65536, 196615, 0, 65536, 196616, 0, 65540, 196617, 0, 65539, 196618, 0, 2, 196622, 0, 65537, 196623, 0, 65545, 327679, 0, 131073, 262144, 0, 196619, 262145, 0, 196619, 262146, 0, 196619, 262147, 0, 196619, 262148, 0, 196619, 262149, 0, 196619, 262150, 0, 196619, 262151, 0, 196619, 262152, 0, 196619, 262153, 0, 196619, 262154, 0, 65539, 262155, 0, 2, 262159, 0, 65541, 393215, 0, 65537, 327680, 0, 131072, 327681, 0, 131072, 327682, 0, 131072, 327683, 0, 131072, 327684, 0, 131072, 327685, 0, 131072, 327686, 0, 131072, 327687, 0, 131072, 327688, 0, 131072, 327689, 0, 131072, 327690, 0, 131072, 327691, 0, 65547, 327692, 0, 196609, 327693, 0, 196609, 327694, 0, 196609, 327695, 0, 65543 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TileMap" type="TileMap" parent="." index="3"]
+
+mode = 0
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 131083, 11, 0, 131084, 12, 0, 196612, 1, 0, 196613, 9, 0, 196614, 9, 0, 196615, 9, 0, 196616, 9, 0, 196617, 9, 0, 196618, 9, 0, 196619, 9, 0, 196620, 10, 0, 262148, 2, 0, 262149, 7, 0, 262150, 7, 0, 262151, 7, 0, 262152, 7, 0, 262153, 7, 0, 262154, 7, 0, 262155, 7, 0, 262156, 8, 0 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+
