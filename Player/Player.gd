@@ -10,7 +10,7 @@ const MAX_Y = 360
 var motion = Vector2()
 var sliding_check = Transform2D()
 
-var sliding = false
+var low = false
 var friction = false
 
 export(String, FILE, "*.tscn") var world_scene
@@ -38,29 +38,34 @@ func _physics_process(delta):
 		
 		$Sprite.flip_h = false
 		
-		if !sliding:
+		if !low:
 			$Sprite.play("Run") 
+		else:
+			$Sprite.play("Slide") 
 		
 	elif Input.is_action_pressed("ui_left"):
 		motion.x = max(motion.x - ACCERLERATION , -MAX_SPEED)
 		
 		$Sprite.flip_h = true
 		
-		if !sliding:
+		if !low:
 			$Sprite.play("Run")
+		else:
+			$Sprite.play("Slide") 
 	else:
 		motion.x = lerp(motion.x, 0, 0.2)
-		if !test_move(sliding_check, Vector2(0,-20)):
+		if !low:
 			$Sprite.play("Idle")
 		friction = true
-	
+			
+			
 	on_floor_action()
 	
 	motion = move_and_slide(motion, UP)
 
 
 func change_collsion_shape():
-	if sliding:
+	if low:
 		$UpRight.disabled = true
 		$Sliding.disabled = false
 	else:
@@ -69,19 +74,24 @@ func change_collsion_shape():
 
 func on_floor_action():
 	if is_on_floor():
-		if Input.is_action_pressed("ui_down") and motion.x != 0:
+		if Input.is_action_pressed("ui_down"):
+			if motion.x == 0:
+				$Sprite.play("Duck")
+				low = true
+				change_collsion_shape()
+			else:
 				$Sprite.play("Slide") 
-				sliding = true
+				low = true
 				change_collsion_shape()
 				
 		else:
 			if !test_move(sliding_check, Vector2(0,-20)):
-				sliding = false
+				low = false
 				change_collsion_shape()
 				
-			if Input.is_action_just_pressed("ui_up") or Input.is_action_pressed("ui_select"):
-				motion.y = JUMP_SPEED
-			
+				if Input.is_action_just_pressed("ui_up") or Input.is_action_pressed("ui_select"):
+					motion.y = JUMP_SPEED
+
 		if friction:
 			motion.x = lerp(motion.x, 0, 0.2)
 	else:
