@@ -4,7 +4,7 @@
 [ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://Sprites/Sprites/Tiles/DirtTileSet.tres" type="TileSet" id=3]
 
-[node name="WorldWin" type="Node"]
+[node name="WorldWin" type="Node" index="0"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 

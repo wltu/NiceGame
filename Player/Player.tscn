@@ -29,10 +29,10 @@
 [ext_resource path="res://Sprites/Sprites/Player/Duck/duck3.png" type="Texture" id=27]
 [ext_resource path="res://Sprites/Sprites/Player/Slide/Slide0.png" type="Texture" id=28]
 [ext_resource path="res://Sprites/Sprites/Player/Slide/Slide1.png" type="Texture" id=29]
-[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump0.png" type="Texture" id=30]
-[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump1.png" type="Texture" id=31]
-[ext_resource path="res://Sprites/Sprites/Player/Fall/Fall0.png" type="Texture" id=32]
-[ext_resource path="res://Sprites/Sprites/Player/Fall/Fall1.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Sprites/Player/Fall/Fall0.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Sprites/Player/Fall/Fall1.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump0.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump1.png" type="Texture" id=33]
 [ext_resource path="res://Sprites/Sprites/Sky.png" type="Texture" id=34]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -64,14 +64,14 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 30 ), ExtResource( 31 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 32 ), ExtResource( 33 ) ],
 "loop": false,
 "name": "Fall",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -87,7 +87,7 @@ custom_solver_bias = 0.0
 radius = 14.0
 height = 20.0
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1

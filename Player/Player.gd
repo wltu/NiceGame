@@ -3,11 +3,14 @@ extends KinematicBody2D
 const UP = Vector2(0, -1)
 const GRAVITY = 20
 const ACCERLERATION = 50
-const MAX_SPEED = 200
+const WALK_SPEED = 200
+const RUN_SPEED = 300
 const JUMP_SPEED = -540
 const SLIDE_SPEED = 500
 const MAX_X = 640
 const MAX_Y = 360
+const TIME_GAP = 100
+
 var motion = Vector2()
 var sliding_check = Transform2D()
 
@@ -15,14 +18,33 @@ var low = false
 var friction = false
 var slide = false
 
+var counter = 0
+var right = false
+var left = false
+var run = false
+var walk = false
+
 export(String, FILE, "*.tscn") var world_scene
 
 
 #Initial function when sence loads.
-func _ready():	
+func _ready():
 	pass
 
 func _physics_process(delta):
+	if right:
+		counter += 1
+		
+		if counter > TIME_GAP:
+			counter = 0
+			right = false
+	elif left:
+		counter += 1
+		
+		if counter > TIME_GAP:
+			counter = 0
+			left = false
+	
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 	
@@ -39,27 +61,44 @@ func _physics_process(delta):
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
+		if right and counter <= TIME_GAP:
+			run = true
 		
 		$Sprite.flip_h = false
 		
 		if !low:
-			motion.x = min(ACCERLERATION + motion.x, MAX_SPEED)
-			$Sprite.play("Run") 
-		#else:
-		#	$Sprite.play("Slide") 
+			if run:
+				motion.x = min(ACCERLERATION + motion.x, RUN_SPEED)
+				$Sprite.play("Run") 
+			else:
+				motion.x = min(ACCERLERATION + motion.x, WALK_SPEED)
+				$Sprite.play("Walk") 
+				run = false
+			
+			right = false
+			counter = 0
 		
 	elif Input.is_action_pressed("ui_left"):
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
+		if left and counter <= TIME_GAP:
+			run = true
+		
 		$Sprite.flip_h = true
 		
 		if !low:
-			motion.x = max(motion.x - ACCERLERATION , -MAX_SPEED)
-			$Sprite.play("Run")
-		#else:
-		#	$Sprite.play("Slide") 
-	else:	
+			if run:
+				motion.x = max(motion.x - ACCERLERATION , -RUN_SPEED)
+				$Sprite.play("Run") 
+			else:
+				motion.x = max(motion.x - ACCERLERATION , -WALK_SPEED)
+				$Sprite.play("Walk") 
+				run = false
+				
+			left = false
+			counter = 0
+	else:
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
@@ -68,9 +107,15 @@ func _physics_process(delta):
 			$Sprite.play("Idle")
 		
 		friction = true
-			
 		
-
+	if Input.is_action_just_released("ui_right"):
+		right = true
+		run = false
+		
+	if Input.is_action_just_released("ui_left"):
+		left = true
+		run = false
+	
 	on_floor_action()
 	
 	motion = move_and_slide(motion, UP)
