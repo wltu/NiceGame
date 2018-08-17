@@ -9,7 +9,7 @@ const JUMP_SPEED = -540
 const SLIDE_SPEED = 500
 const MAX_X = 640
 const MAX_Y = 360
-const TIME_GAP = 100
+const TIME_GAP = 10
 
 var motion = Vector2()
 var sliding_check = Transform2D()
@@ -99,6 +99,8 @@ func _physics_process(delta):
 			left = false
 			counter = 0
 	else:
+		run = false
+		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
@@ -110,11 +112,11 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_released("ui_right"):
 		right = true
-		run = false
+		#run = false
 		
 	if Input.is_action_just_released("ui_left"):
 		left = true
-		run = false
+		#run = false
 	
 	on_floor_action()
 	
