@@ -7,16 +7,20 @@ const WALK_SPEED = 200
 const RUN_SPEED = 300
 const JUMP_SPEED = -540
 const SLIDE_SPEED = 500
+const WALL_JUMP_SPEED_H = 500
+const WALL_JUMP_SPEED_V = -400
+const WALL_SLIDE_SLEED = 75
 const MAX_X = 640
 const MAX_Y = 360
 const TIME_GAP = 10
 
 var motion = Vector2()
-var sliding_check = Transform2D()
+var body_check = Transform2D()
 
 var low = false
 var friction = false
 var slide = false
+var in_air = false;
 
 var counter = 0
 var right = false
@@ -55,7 +59,7 @@ func _physics_process(delta):
 	
 	motion.y += GRAVITY
 	
-	sliding_check = Transform2D(Vector2(0, 0), Vector2(0, 0), position)
+	body_check = Transform2D(Vector2(0, 0), Vector2(0, 0), position)
 	
 	if Input.is_action_pressed("ui_right"):
 		if slide:
@@ -119,6 +123,7 @@ func _physics_process(delta):
 		#run = false
 	
 	on_floor_action()
+	on_wall_action()
 	
 	motion = move_and_slide(motion, UP)
 
@@ -131,8 +136,32 @@ func change_collsion_shape():
 		$UpRight.disabled = false
 		$Sliding.disabled = true
 
+func on_wall_action():
+	
+	if is_on_wall() and in_air and !test_move(body_check, Vector2(0,75)):
+		$Sprite.flip_h = !$Sprite.flip_h
+		
+		if !$Sprite.flip_h:
+			$Sprite.offset.x = 18
+		else:
+			$Sprite.offset.x = -18
+			
+		$Sprite.play("Wall")
+		
+		motion.y = WALL_SLIDE_SLEED
+		
+		if Input.is_action_just_pressed("ui_select") or Input.is_action_just_pressed("ui_up"):
+			motion.y = WALL_JUMP_SPEED_V
+			if !$Sprite.flip_h:
+				motion.x = WALL_JUMP_SPEED_H
+			else:
+				motion.x = -WALL_JUMP_SPEED_H
+	else:
+		$Sprite.offset.x = 0
+
 func on_floor_action():
 	if is_on_floor():
+		in_air = false
 		if Input.is_action_pressed("ui_down"):
 			if !slide:
 				motion.x = 0
@@ -144,7 +173,7 @@ func on_floor_action():
 				change_collsion_shape()
 			
 		else:
-			if !test_move(sliding_check, Vector2(0,-20)):
+			if !test_move(body_check, Vector2(0,-20)):
 				low = false
 				slide = false
 				change_collsion_shape()
@@ -152,8 +181,8 @@ func on_floor_action():
 				if Input.is_action_just_pressed("ui_up") or Input.is_action_pressed("ui_select"):
 					motion.y = JUMP_SPEED
 		
-		
-		if Input.is_action_just_pressed("ui_select"):
+		if low and (Input.is_action_just_pressed("ui_select") or run):
+			run = false
 			if $Sprite.flip_h == false:
 				motion.x = SLIDE_SPEED
 			else:
@@ -165,6 +194,8 @@ func on_floor_action():
 		if friction and !slide:
 			motion.x = lerp(motion.x, 0, 0.2)
 	else:
+		in_air = true
+		
 		slide = false
 		low = false
 		if motion.y < 0:
