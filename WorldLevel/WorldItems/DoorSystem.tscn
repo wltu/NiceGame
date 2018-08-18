@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://WorldLevel/WorldItems/DoorSystem.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Sprites/GameItems/sideDoor.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Sprites/GameItems/door.jpg" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3, 32 )
+
+[node name="Door" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+
+[node name="DoorArea" type="CollisionShape2D" parent="." index="0"]
+
+visible = false
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="DoorStop" type="StaticBody2D" parent="." index="1"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Pickable", "Transform", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorStop" index="0"]
+
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ClosedDoor" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Region", "Visibility" ]
+
+[node name="OpenDoor" type="Sprite" parent="." index="3"]
+
+visible = false
+z_index = -1
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset", "Region", "Visibility", "Z Index" ]
+
+

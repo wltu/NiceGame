@@ -11,7 +11,6 @@ extents = Vector2( 16, 16 )
 
 [node name="0" type="Sprite" parent="." index="0"]
 
-editor/display_folded = true
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
@@ -40,7 +39,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="3" type="Sprite" parent="." index="1"]
 
-editor/display_folded = true
 position = Vector2( 0, 64 )
 texture = ExtResource( 1 )
 centered = false
