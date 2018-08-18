@@ -30,12 +30,37 @@ var walk = false
 
 export(String, FILE, "*.tscn") var world_scene
 
-
-#Initial function when sence loads.
-func _ready():
-	pass
-
 func _physics_process(delta):
+	friction = false
+	
+	motion.y += GRAVITY
+	
+	body_check = Transform2D(Vector2(0, 0), Vector2(0, 0), position)
+	
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
+	
+	if Input.is_action_just_pressed("ui_reset"):
+		get_tree().change_scene(world_scene)
+	
+	directional_action()
+	
+	on_floor_action()
+	
+	on_wall_action()
+	
+	motion = move_and_slide(motion, UP)
+	
+func change_collsion_shape():
+	if low:
+		$UpRight.disabled = true
+		$Sliding.disabled = false
+	else:
+		$UpRight.disabled = false
+		$Sliding.disabled = true
+	
+func directional_action():
 	if right:
 		counter += 1
 		
@@ -48,18 +73,6 @@ func _physics_process(delta):
 		if counter > TIME_GAP:
 			counter = 0
 			left = false
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
-	
-	if Input.is_action_just_pressed("ui_reset"):
-		get_tree().change_scene(world_scene)
-	
-	friction = false
-	
-	motion.y += GRAVITY
-	
-	body_check = Transform2D(Vector2(0, 0), Vector2(0, 0), position)
 	
 	if Input.is_action_pressed("ui_right"):
 		if slide:
@@ -116,28 +129,10 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_released("ui_right"):
 		right = true
-		#run = false
-		
 	if Input.is_action_just_released("ui_left"):
 		left = true
-		#run = false
 	
-	on_floor_action()
-	on_wall_action()
-	
-	motion = move_and_slide(motion, UP)
-
-
-func change_collsion_shape():
-	if low:
-		$UpRight.disabled = true
-		$Sliding.disabled = false
-	else:
-		$UpRight.disabled = false
-		$Sliding.disabled = true
-
 func on_wall_action():
-	
 	if is_on_wall() and in_air and !test_move(body_check, Vector2(0,75)):
 		$Sprite.flip_h = !$Sprite.flip_h
 		
@@ -181,8 +176,7 @@ func on_floor_action():
 				if Input.is_action_just_pressed("ui_up") or Input.is_action_pressed("ui_select"):
 					motion.y = JUMP_SPEED
 		
-		if low and (Input.is_action_just_pressed("ui_select") or run):
-			run = false
+		if low and (Input.is_action_just_pressed("ui_select") or run and !slide):
 			if $Sprite.flip_h == false:
 				motion.x = SLIDE_SPEED
 			else:
