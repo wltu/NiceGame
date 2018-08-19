@@ -27,6 +27,7 @@ var right = false
 var left = false
 var run = false
 var walk = false
+var peak = true
 
 export(String, FILE, "*.tscn") var world_scene
 
@@ -117,13 +118,22 @@ func directional_action():
 			counter = 0
 	else:
 		run = false
+		GameVariables.wall_jump = true
 		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
-		if !low:
+		
+			
+		
+		if !low and peak:
 			motion.x = lerp(motion.x, 0, 0.2)
-			$Sprite.play("Idle")
+			
+			if in_air and is_on_floor():
+				$Sprite.play("Land")
+			else:
+				$Sprite.play("Idle")
+			
 		
 		friction = true
 		
@@ -133,7 +143,7 @@ func directional_action():
 		left = true
 	
 func on_wall_action():
-	if is_on_wall() and in_air and !test_move(body_check, Vector2(0,75)):
+	if is_on_wall() and in_air and GameVariables.wall_jump and !test_move(body_check, Vector2(0,75)):
 		$Sprite.flip_h = !$Sprite.flip_h
 		
 		if !$Sprite.flip_h:
@@ -156,7 +166,6 @@ func on_wall_action():
 
 func on_floor_action():
 	if is_on_floor():
-		in_air = false
 		if Input.is_action_pressed("ui_down"):
 			if !slide:
 				motion.x = 0
@@ -192,10 +201,25 @@ func on_floor_action():
 		
 		slide = false
 		low = false
+		
+		#print(peak)
+		
 		if motion.y < 0:
+			peak = false
 			$Sprite.play("Jump") 
+		elif !peak:
+			$Sprite.play("Peak")
 		else:
-			$Sprite.play("Fall") 
+			$Sprite.play("Fall")
 		
 		if friction:
 			motion.x = lerp(motion.x, 0, 0.05)
+	
+	
+func _on_Sprite_animation_finished():
+	if $Sprite.animation == "Peak":
+		$Sprite.play("Fall") 
+		peak = true
+	elif $Sprite.animation == "Land":
+		$Sprite.play("Idel") 
+		in_air = false

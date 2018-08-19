@@ -7,8 +7,6 @@ func _physics_process(delta):
 	
 	for body in bodies:
 		if body.name == "Player":
-			print(GameVariables.key )
-			
 			if GameVariables.key > 0:
 				GameVariables.key -= 1
 				$DoorArea.disabled = true
