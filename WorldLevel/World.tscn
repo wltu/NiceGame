@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://WorldLevel/World Complete.tscn" type="PackedScene" id=2]
@@ -7,12 +7,13 @@
 [ext_resource path="res://WorldLevel/WorldItems/Key.tscn" type="PackedScene" id=5]
 [ext_resource path="res://WorldLevel/WorldItems/DoorSystem.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Sprites/Sprites/Tiles/Metal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://WorldLevel/WorldItems/MovingPlatform.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 64, 32 )
+position = Vector2( 960, 512 )
 world_scene = "res://WorldLevel/World.tscn"
 
 [node name="World Complete" parent="." index="1" instance=ExtResource( 2 )]
@@ -82,6 +83,8 @@ position = Vector2( 864, 224 )
 
 [node name="Doors" type="Node" parent="." index="5"]
 
+editor/display_folded = true
+
 [node name="Door0" parent="Doors" index="0" instance=ExtResource( 6 )]
 
 position = Vector2( 672, 288 )
@@ -91,6 +94,8 @@ position = Vector2( 672, 288 )
 position = Vector2( 512, 672 )
 
 [node name="Metal" type="Node" parent="." index="6"]
+
+editor/display_folded = true
 
 [node name="Metal" parent="Metal" index="0" instance=ExtResource( 7 )]
 
@@ -107,5 +112,12 @@ position = Vector2( 1280, 256 )
 [node name="Metal4" parent="Metal" index="3" instance=ExtResource( 7 )]
 
 position = Vector2( 1280, 288 )
+
+[node name="MovingPlatform" type="Node" parent="." index="7"]
+
+[node name="MovingPlatform" parent="MovingPlatform" index="0" instance=ExtResource( 8 )]
+
+position = Vector2( 1088, 608 )
+SPEED = 1
 
 

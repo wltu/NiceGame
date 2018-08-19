@@ -76,6 +76,9 @@ func directional_action():
 			left = false
 	
 	if Input.is_action_pressed("ui_right"):
+		if is_on_floor():
+			in_air = false
+		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
@@ -97,6 +100,9 @@ func directional_action():
 			counter = 0
 		
 	elif Input.is_action_pressed("ui_left"):
+		if is_on_floor():
+			in_air = false
+		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
@@ -122,9 +128,6 @@ func directional_action():
 		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
-		
-		
-			
 		
 		if !low and peak:
 			motion.x = lerp(motion.x, 0, 0.2)
