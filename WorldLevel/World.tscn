@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://WorldLevel/World Complete.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://Sprites/Sprites/Tiles/DirtSet.tres" type="TileSet" id=4]
 [ext_resource path="res://Sprites/Sprites/Tiles/MetalTileSet.tres" type="TileSet" id=5]
-[ext_resource path="res://WorldLevel/WorldItems/Key.tscn" type="PackedScene" id=6]
-[ext_resource path="res://WorldLevel/WorldItems/DoorSystem.tscn" type="PackedScene" id=7]
-[ext_resource path="res://WorldLevel/WorldItems/MovingPlatform.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprites/Sprites/Tiles/SpikeTileSet.tres" type="TileSet" id=6]
+[ext_resource path="res://WorldLevel/WorldItems/Key.tscn" type="PackedScene" id=7]
+[ext_resource path="res://WorldLevel/WorldItems/DoorSystem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://WorldLevel/WorldItems/MovingPlatform.tscn" type="PackedScene" id=9]
+[ext_resource path="res://WorldLevel/WorldItems/Rock.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node"]
 
@@ -63,7 +65,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 196612, 1, 0, 196613, 9, 0, 196614, 9, 0, 196615, 9, 0, 196616, 9, 0, 196617, 9, 0, 196618, 9, 0, 196619, 10, 0, 262148, 2, 0, 262149, 7, 0, 262150, 7, 0, 262151, 7, 0, 262152, 7, 0, 262153, 7, 0, 262154, 7, 0, 262155, 8, 0, 393257, 12, 0, 458793, 10, 0, 524329, 10, 0, 589865, 10, 0, 655400, 1, 0, 655401, 10, 0 )
+tile_data = PoolIntArray( 196612, 1, 0, 196613, 9, 0, 196614, 9, 0, 196615, 9, 0, 196616, 9, 0, 196617, 9, 0, 196618, 9, 0, 196619, 10, 0, 196648, 4, 0, 196649, 10, 0, 262148, 2, 0, 262149, 7, 0, 262150, 7, 0, 262151, 7, 0, 262152, 7, 0, 262153, 7, 0, 262154, 7, 0, 262155, 8, 0, 262185, 10, 0, 327721, 10, 0, 393257, 10, 0, 458793, 10, 0, 524329, 10, 0, 589865, 10, 0, 655400, 1, 0, 655401, 10, 0 )
 _sections_unfolded = [ "Cell", "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -87,41 +89,70 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 393256, 1, 0, 458792, 1, 0, 524328, 1, 0, 589864, 1, 0 )
+tile_data = PoolIntArray( 262184, 0, 0, 327720, 0, 0, 393256, 0, 0, 458792, 0, 0, 524328, 0, 0, 589864, 0, 0 )
 _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Keys" type="Node" parent="." index="5"]
+[node name="Spike" type="TileMap" parent="." index="5"]
+
+mode = 0
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 1376293, 0, 0, 1376294, 0, 0, 1376295, 0, 0 )
+_sections_unfolded = [ "Cell", "Collision" ]
+
+[node name="Keys" type="Node" parent="." index="6"]
 
 editor/display_folded = true
 
-[node name="Key0" parent="Keys" index="0" instance=ExtResource( 6 )]
+[node name="Key0" parent="Keys" index="0" instance=ExtResource( 7 )]
 
 position = Vector2( 544, 96 )
 
-[node name="Key1" parent="Keys" index="1" instance=ExtResource( 6 )]
+[node name="Key1" parent="Keys" index="1" instance=ExtResource( 7 )]
 
 position = Vector2( 864, 224 )
 
-[node name="Doors" type="Node" parent="." index="6"]
+[node name="Doors" type="Node" parent="." index="7"]
 
 editor/display_folded = true
 
-[node name="Door0" parent="Doors" index="0" instance=ExtResource( 7 )]
+[node name="Door0" parent="Doors" index="0" instance=ExtResource( 8 )]
 
 position = Vector2( 672, 288 )
 
-[node name="Door1" parent="Doors" index="1" instance=ExtResource( 7 )]
+[node name="Door1" parent="Doors" index="1" instance=ExtResource( 8 )]
 
 position = Vector2( 512, 672 )
 
-[node name="MovingPlatform" type="Node" parent="." index="7"]
+[node name="MovingPlatform" type="Node" parent="." index="8"]
 
-[node name="MovingPlatform" parent="MovingPlatform" index="0" instance=ExtResource( 8 )]
+editor/display_folded = true
+
+[node name="MovingPlatform" parent="MovingPlatform" index="0" instance=ExtResource( 9 )]
 
 position = Vector2( 1088, 608 )
 SPEED = 1
+
+[node name="Rocks" type="Node" parent="." index="9"]
+
+[node name="Rock" parent="Rocks" index="0" instance=ExtResource( 10 )]
+
+position = Vector2( 768, 672 )
 
 

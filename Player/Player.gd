@@ -67,7 +67,6 @@ func change_collsion_shape():
 	
 func detect_area():
 	var bodies = $HBox.get_overlapping_bodies()
-	var areas = $HBox.get_overlapping_areas()
 	
 	var has_metal = false
 	
@@ -76,10 +75,12 @@ func detect_area():
 			has_metal = true
 		elif body.name == "MovingPlatform":
 			position.x += body.motion
-			
-	for area in areas:
-		print (area.name)
-	
+		elif body.name == "Spike":
+			print("You Died!!")
+			get_tree().change_scene(world_scene)
+		elif body.name == "Rock":
+			print("You rock")
+		
 	if has_metal:
 		wall_jump = false
 	else:
