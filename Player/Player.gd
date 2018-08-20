@@ -21,6 +21,7 @@ var low = false
 var friction = false
 var slide = false
 var in_air = false;
+var wall_jump = true
 
 var counter = 0
 var right = false
@@ -45,6 +46,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_reset"):
 		get_tree().change_scene(world_scene)
 	
+	
+	detect_area()
+	
 	directional_action()
 	
 	on_floor_action()
@@ -60,6 +64,26 @@ func change_collsion_shape():
 	else:
 		$UpRight.disabled = false
 		$Sliding.disabled = true
+	
+func detect_area():
+	var bodies = $HBox.get_overlapping_bodies()
+	var areas = $HBox.get_overlapping_areas()
+	
+	var has_metal = false
+	
+	for body in bodies:
+		if body.name == "Metal":
+			has_metal = true
+		elif body.name == "MovingPlatform":
+			position.x += body.motion
+			
+	for area in areas:
+		print (area.name)
+	
+	if has_metal:
+		wall_jump = false
+	else:
+		wall_jump = true
 	
 func directional_action():
 	if right:
@@ -124,7 +148,7 @@ func directional_action():
 			counter = 0
 	else:
 		run = false
-		GameVariables.wall_jump = true
+		#wall_jump = true
 		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
@@ -146,7 +170,7 @@ func directional_action():
 		left = true
 	
 func on_wall_action():
-	if is_on_wall() and in_air and GameVariables.wall_jump and !test_move(body_check, Vector2(0,75)):
+	if is_on_wall() and in_air and wall_jump and !test_move(body_check, Vector2(0,75)):
 		$Sprite.flip_h = !$Sprite.flip_h
 		
 		if !$Sprite.flip_h:
