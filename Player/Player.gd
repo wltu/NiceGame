@@ -29,11 +29,10 @@ var right = false
 var left = false
 var run = false
 var walk = false
-var peak = true
 
 export(String, FILE, "*.tscn") var world_scene
 
-func _physics_process(delta):
+func _physics_process(delta):	
 	friction = false
 	
 	motion.y += GRAVITY
@@ -57,6 +56,7 @@ func _physics_process(delta):
 	on_wall_action()
 	
 	motion = move_and_slide(motion, UP)
+	
 	
 func change_collsion_shape():
 	if low:
@@ -161,7 +161,7 @@ func directional_action():
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
-		if !low and peak:
+		if !low:
 			motion.x = lerp(motion.x, 0, 0.2)
 			
 			if in_air and is_on_floor():
@@ -237,13 +237,8 @@ func on_floor_action():
 		slide = false
 		low = false
 		
-		#print(peak)
-		
 		if motion.y < 0:
-			peak = false
 			$Sprite.play("Jump") 
-		elif !peak:
-			$Sprite.play("Peak")
 		else:
 			$Sprite.play("Fall")
 		
@@ -252,9 +247,6 @@ func on_floor_action():
 	
 	
 func _on_Sprite_animation_finished():
-	if $Sprite.animation == "Peak":
-		$Sprite.play("Fall") 
-		peak = true
-	elif $Sprite.animation == "Land":
+	if $Sprite.animation == "Land":
 		$Sprite.play("Idel") 
 		in_air = false
