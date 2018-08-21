@@ -22,6 +22,7 @@ var friction = false
 var slide = false
 var in_air = false;
 var wall_jump = true
+var direction = 0  #-1 for left, 1 for right, 0 for idle
 
 var counter = 0
 var right = false
@@ -67,6 +68,7 @@ func change_collsion_shape():
 	
 func detect_area():
 	var bodies = $HBox.get_overlapping_bodies()
+	var areas = $HBox.get_overlapping_areas()
 	
 	var has_metal = false
 	
@@ -75,11 +77,11 @@ func detect_area():
 			has_metal = true
 		elif body.name == "MovingPlatform":
 			position.x += body.motion
-		elif body.name == "Spike":
+	
+	for area in areas:
+		if area.name == "SpikeArea":
 			print("You Died!!")
 			get_tree().change_scene(world_scene)
-		elif body.name == "Rock":
-			print("You rock")
 		
 	if has_metal:
 		wall_jump = false
@@ -101,6 +103,8 @@ func directional_action():
 			left = false
 	
 	if Input.is_action_pressed("ui_right"):
+		direction = 1
+		
 		if is_on_floor():
 			in_air = false
 		
@@ -125,6 +129,8 @@ func directional_action():
 			counter = 0
 		
 	elif Input.is_action_pressed("ui_left"):
+		direction = -1
+		
 		if is_on_floor():
 			in_air = false
 		
@@ -148,6 +154,7 @@ func directional_action():
 			left = false
 			counter = 0
 	else:
+		direction = 0
 		run = false
 		#wall_jump = true
 		
