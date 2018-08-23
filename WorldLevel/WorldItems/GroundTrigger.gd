@@ -11,6 +11,6 @@ func _process(delta):
 	self.get_node("../../Doors/AutoDoor" + num).open = false
 	
 	for body in bodies:
-		if body.name == "Player" or body.name.begins_with("Rock") and body.key_rock:
+		if body.name == "Player" or body.name.begins_with("Rock"):
 			self.get_node("../../Doors/AutoDoor" + num).open = true
 			break

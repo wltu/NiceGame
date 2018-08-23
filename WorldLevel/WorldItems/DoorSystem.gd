@@ -1,4 +1,4 @@
-# World DoorSystem.gd
+ # World DoorSystem.gd
 extends Area2D
 
 var open = false

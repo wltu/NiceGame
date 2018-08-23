@@ -24,6 +24,8 @@ var in_air = false;
 var wall_jump = true
 var direction = 0  #-1 for left, 1 for right, 0 for idle
 
+var blocks = 0
+
 var counter = 0
 var right = false
 var left = false
@@ -31,9 +33,9 @@ var run = false
 var walk = false
 
 export(String, FILE, "*.tscn") var world_scene
+export (PackedScene) var Blocks
 
 func _physics_process(delta):
-	print(position.y)
 	friction = false
 	
 	motion.y += GRAVITY
@@ -55,6 +57,8 @@ func _physics_process(delta):
 	on_floor_action()
 	
 	on_wall_action()
+	
+	items_action()
 	
 	motion = move_and_slide(motion, UP)
 	
@@ -251,3 +255,20 @@ func _on_Sprite_animation_finished():
 	if $Sprite.animation == "Land":
 		$Sprite.play("Idel") 
 		in_air = false
+		
+func items_action():
+	if Input.is_action_just_pressed("ui_item") and blocks > 0:
+		print("Use rock")
+		blocks -= 1
+		
+		var block = Blocks.instance()
+		var pos = self.global_position
+		
+		if $Sprite.flip_h:
+			pos.x -= 32
+		else:
+			pos.x += 32
+			
+		block.start(pos)
+		self.get_node("../Doors").add_child(block)
+		

@@ -8,10 +8,11 @@ var motion = Vector2()
 var player_push = false
 var direction = 0
 
-export(bool) var key_rock = false
-
 
 const UP = Vector2(0, -1)
+
+func start(pos):
+	position = pos
 
 func _physics_process(delta):
 	player_push = false
