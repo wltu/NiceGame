@@ -32,7 +32,8 @@ var walk = false
 
 export(String, FILE, "*.tscn") var world_scene
 
-func _physics_process(delta):	
+func _physics_process(delta):
+	print(position.y)
 	friction = false
 	
 	motion.y += GRAVITY
@@ -75,7 +76,7 @@ func detect_area():
 	for body in bodies:
 		if body.name == "Metal":
 			has_metal = true
-		elif body.name == "MovingPlatform":
+		elif body.name.begins_with("MovingPlatform"):
 			position.x += body.motion
 	
 	for area in areas:

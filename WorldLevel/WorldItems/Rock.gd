@@ -7,6 +7,10 @@ var SLIDE_SPEED = 0
 var motion = Vector2()
 var player_push = false
 var direction = 0
+
+export(bool) var key_rock = false
+
+
 const UP = Vector2(0, -1)
 
 func _physics_process(delta):
@@ -22,11 +26,13 @@ func _physics_process(delta):
 	for body in bodies:
 		if body.name == "Player":
 			direction = body.direction
+			if body.is_on_floor():
+				
+				if (direction == 1 and body.position.x < self.position.x) or (direction == -1 and body.position.x > self.position.x):
+					player_push = true
+					SLIDE_SPEED = body.WALK_SPEED
+					body.run = false
 			
-			if (direction == 1 and body.position.x < self.position.x) or (direction == -1 and body.position.x > self.position.x):
-				player_push = true
-				SLIDE_SPEED = body.WALK_SPEED
-				body.run = false
 			
 	if player_push:
 		if direction == 1:

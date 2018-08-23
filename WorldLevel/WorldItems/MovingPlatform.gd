@@ -15,7 +15,7 @@ func _physics_process(delta):
 	
 	if len(walls) > 1:
 		for wall in walls:
-			if wall.name == "TileMap" or wall.name == "AutoTile" :
+			if wall.name == "Dirt" or wall.name == "AutoTile" or wall.name == "Metal":
 				motion = -motion
 	
 	self.position.x += motion
