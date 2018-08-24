@@ -9,6 +9,7 @@
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
 position = Vector2( 64, 192 )
+start_pos = Vector2( 60, 200 )
 world_scene = "res://WorldLevel/World2.tscn"
 
 [node name="World Complete" parent="." index="1" instance=ExtResource( 2 )]

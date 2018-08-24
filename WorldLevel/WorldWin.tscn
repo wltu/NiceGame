@@ -9,6 +9,7 @@
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
 position = Vector2( 352, 224 )
+start_pos = Vector2( 360, 240 )
 world_scene = "res://WorldLevel/World.tscn"
 
 [node name="Auto Tile" type="TileMap" parent="." index="1"]

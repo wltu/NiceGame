@@ -13,7 +13,7 @@ extents = Vector2( 30, 30 )
 custom_solver_bias = 0.0
 extents = Vector2( 40, 30 )
 
-[node name="Rock" type="KinematicBody2D" index="0"]
+[node name="Rock" type="KinematicBody2D"]
 
 position = Vector2( 32, 32 )
 input_pickable = false
@@ -22,7 +22,6 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Applied Forces", "Linear", "Material", "Transform" ]
-key_rock = false
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

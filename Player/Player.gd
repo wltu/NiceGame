@@ -31,18 +31,20 @@ var right = false
 var left = false
 var run = false
 var walk = false
-#var start_pos = Vector2()
 
+var testing = true
+
+export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
 export (PackedScene) var Blocks
 
 func _ready():
-#	if get_parent().check_point > 0:
-#		start_pos = get_parent().CHECKPOINTS[get_parent().check_point - 1]
-#
-#	self.position.x = start_pos.x
-#	self.position.y = start_pos.y
-	pass
+	if !testing:
+		if GameVariables.check_point > 0:
+			start_pos = get_parent().CHECKPOINTS[GameVariables.check_point - 1]
+	
+		self.position.x = start_pos.x
+		self.position.y = start_pos.y
 
 func _physics_process(delta):
 	friction = false
@@ -56,6 +58,8 @@ func _physics_process(delta):
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("ui_reset"):
+		print("Game")
+		print(GameVariables.check_point)
 		get_tree().change_scene(world_scene)
 	
 	

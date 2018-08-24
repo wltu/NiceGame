@@ -113,7 +113,7 @@ custom_solver_bias = 0.0
 radius = 20.0
 height = 25.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -121,6 +121,7 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "collision" ]
+start_pos = null
 world_scene = null
 Blocks = null
 
