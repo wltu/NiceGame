@@ -31,9 +31,18 @@ var right = false
 var left = false
 var run = false
 var walk = false
+#var start_pos = Vector2()
 
 export(String, FILE, "*.tscn") var world_scene
 export (PackedScene) var Blocks
+
+func _ready():
+#	if get_parent().check_point > 0:
+#		start_pos = get_parent().CHECKPOINTS[get_parent().check_point - 1]
+#
+#	self.position.x = start_pos.x
+#	self.position.y = start_pos.y
+	pass
 
 func _physics_process(delta):
 	friction = false
