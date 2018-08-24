@@ -1,17 +1,23 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://WorldLevel/WorldItems/Rock.tscn" type="PackedScene" id=2]
-[ext_resource path="res://WorldLevel/World Complete.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=4]
-[ext_resource path="res://Sprites/Sprites/Tiles/DirtSet.tres" type="TileSet" id=5]
-[ext_resource path="res://Sprites/Sprites/Tiles/MetalTileSet.tres" type="TileSet" id=6]
-[ext_resource path="res://Sprites/Sprites/Tiles/SpikesTileSet.tres" type="TileSet" id=7]
-[ext_resource path="res://WorldLevel/WorldItems/Key.tscn" type="PackedScene" id=8]
-[ext_resource path="res://WorldLevel/WorldItems/DoorSystem.tscn" type="PackedScene" id=9]
-[ext_resource path="res://WorldLevel/WorldItems/MovingPlatform.tscn" type="PackedScene" id=10]
-[ext_resource path="res://WorldLevel/WorldItems/GroundTrigger.tscn" type="PackedScene" id=11]
-[ext_resource path="res://WorldLevel/WorldItems/BlockItem.tscn" type="PackedScene" id=12]
+[ext_resource path="res://WorldLevel/World1.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WorldLevel/WorldItems/Rock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://WorldLevel/World Complete.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=5]
+[ext_resource path="res://Sprites/Sprites/Tiles/DirtSet.tres" type="TileSet" id=6]
+[ext_resource path="res://Sprites/Sprites/Tiles/MetalTileSet.tres" type="TileSet" id=7]
+[ext_resource path="res://Sprites/Sprites/Tiles/SpikesTileSet.tres" type="TileSet" id=8]
+[ext_resource path="res://WorldLevel/WorldItems/Key.tscn" type="PackedScene" id=9]
+[ext_resource path="res://WorldLevel/WorldItems/DoorSystem.tscn" type="PackedScene" id=10]
+[ext_resource path="res://WorldLevel/WorldItems/MovingPlatform.tscn" type="PackedScene" id=11]
+[ext_resource path="res://WorldLevel/WorldItems/GroundTrigger.tscn" type="PackedScene" id=12]
+[ext_resource path="res://WorldLevel/WorldItems/BlockItem.tscn" type="PackedScene" id=13]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -20,21 +26,38 @@ extents = Vector2( 9.33499, 5 )
 
 [node name="World" type="Node" index="0"]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+script = ExtResource( 1 )
 
-position = Vector2( 2112, 672 )
+[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 2496, -64 )
 world_scene = "res://WorldLevel/World.tscn"
-Blocks = ExtResource( 2 )
+Blocks = ExtResource( 3 )
 
-[node name="World Complete" parent="." index="1" instance=ExtResource( 3 )]
+[node name="World Complete" parent="." index="1" instance=ExtResource( 4 )]
 
 position = Vector2( 3200, 512 )
 next_world = "res://WorldLevel/World2.tscn"
 
-[node name="AutoTile" type="TileMap" parent="." index="2"]
+[node name="CheckPoints" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="0" type="CollisionShape2D" parent="CheckPoints" index="0"]
+
+position = Vector2( 2656, -64 )
+shape = SubResource( 2 )
+
+[node name="AutoTile" type="TileMap" parent="." index="3"]
 
 mode = 0
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -55,10 +78,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Dirt" type="TileMap" parent="." index="3"]
+[node name="Dirt" type="TileMap" parent="." index="4"]
 
 mode = 0
-tile_set = ExtResource( 5 )
+tile_set = ExtResource( 6 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -79,10 +102,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Metal" type="TileMap" parent="." index="4"]
+[node name="Metal" type="TileMap" parent="." index="5"]
 
 mode = 0
-tile_set = ExtResource( 6 )
+tile_set = ExtResource( 7 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -103,10 +126,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Spike" type="TileMap" parent="." index="5"]
+[node name="Spike" type="TileMap" parent="." index="6"]
 
 mode = 0
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 8 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -127,87 +150,94 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Keys" type="Node" parent="." index="6"]
-
-[node name="Key0" parent="Keys" index="0" instance=ExtResource( 8 )]
-
-position = Vector2( 608, 160 )
-
-[node name="Key1" parent="Keys" index="1" instance=ExtResource( 8 )]
-
-position = Vector2( 1120, 32 )
-
-[node name="Key2" parent="Keys" index="2" instance=ExtResource( 8 )]
-
-position = Vector2( -224, 224 )
-
-[node name="Doors" type="Node" parent="." index="7"]
+[node name="Keys" type="Node" parent="." index="7"]
 
 editor/display_folded = true
 
-[node name="Door0" parent="Doors" index="0" instance=ExtResource( 9 )]
+[node name="Key0" parent="Keys" index="0" instance=ExtResource( 9 )]
+
+position = Vector2( 608, 160 )
+
+[node name="Key1" parent="Keys" index="1" instance=ExtResource( 9 )]
+
+position = Vector2( 1120, 32 )
+
+[node name="Key2" parent="Keys" index="2" instance=ExtResource( 9 )]
+
+position = Vector2( -224, 224 )
+
+[node name="Doors" type="Node" parent="." index="8"]
+
+editor/display_folded = true
+
+[node name="Door0" parent="Doors" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 672, 288 )
 
-[node name="Door1" parent="Doors" index="1" instance=ExtResource( 9 )]
+[node name="Door1" parent="Doors" index="1" instance=ExtResource( 10 )]
 
 position = Vector2( 544, 672 )
 
-[node name="Door2" parent="Doors" index="2" instance=ExtResource( 9 )]
+[node name="Door2" parent="Doors" index="2" instance=ExtResource( 10 )]
 
 position = Vector2( 1504, 672 )
 
-[node name="AutoDoor0" parent="Doors" index="3" instance=ExtResource( 9 )]
+[node name="AutoDoor0" parent="Doors" index="3" instance=ExtResource( 10 )]
 
 modulate = Color( 1, 0, 0, 1 )
 self_modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 1984, 672 )
 
-[node name="MovingPlatform" type="Node" parent="." index="8"]
+[node name="MovingPlatform" type="Node" parent="." index="9"]
 
 editor/display_folded = true
 
-[node name="MovingPlatform" parent="MovingPlatform" index="0" instance=ExtResource( 10 )]
+[node name="MovingPlatform" parent="MovingPlatform" index="0" instance=ExtResource( 11 )]
 
 position = Vector2( 1184, 512 )
 SPEED = 2
 
-[node name="MovingPlatform2" parent="MovingPlatform" index="1" instance=ExtResource( 10 )]
+[node name="MovingPlatform2" parent="MovingPlatform" index="1" instance=ExtResource( 11 )]
 
 position = Vector2( 1312, 384 )
 SPEED = 1
 
-[node name="MovingPlatform3" parent="MovingPlatform" index="2" instance=ExtResource( 10 )]
+[node name="MovingPlatform3" parent="MovingPlatform" index="2" instance=ExtResource( 11 )]
 
 position = Vector2( 1312, 224 )
 SPEED = 1
 
-[node name="Rocks" type="Node" parent="." index="9"]
-
-[node name="Rock" parent="Rocks" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 160, 544 )
-
-[node name="Rock2" parent="Rocks" index="1" instance=ExtResource( 2 )]
-
-position = Vector2( 352, 480 )
-
-[node name="GroundTrigger" type="Node" parent="." index="10"]
+[node name="Rocks" type="Node" parent="." index="10"]
 
 editor/display_folded = true
 
-[node name="GroundTrigger0" parent="GroundTrigger" index="0" instance=ExtResource( 11 )]
+[node name="Rock" parent="Rocks" index="0" instance=ExtResource( 3 )]
+
+position = Vector2( 160, 544 )
+
+[node name="Rock2" parent="Rocks" index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 352, 480 )
+
+[node name="GroundTrigger" type="Node" parent="." index="11"]
+
+editor/display_folded = true
+
+[node name="GroundTrigger0" parent="GroundTrigger" index="0" instance=ExtResource( 12 )]
 
 position = Vector2( 1888, 832 )
 
-[node name="OtherItems" type="Node" parent="." index="11"]
+[node name="OtherItems" type="Node" parent="." index="12"]
 
-[node name="BlockItem" parent="OtherItems" index="0" instance=ExtResource( 12 )]
+editor/display_folded = true
+
+[node name="BlockItem" parent="OtherItems" index="0" instance=ExtResource( 13 )]
 
 position = Vector2( 1696, 672 )
 
-[node name="SpikeArea" type="Area2D" parent="." index="12"]
+[node name="SpikeArea" type="Area2D" parent="." index="13"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -231,5 +261,7 @@ shape = SubResource( 1 )
 position = Vector2( 3059.59, 697.948 )
 scale = Vector2( -28.6675, 1 )
 shape = SubResource( 1 )
+
+[connection signal="body_entered" from="CheckPoints" to="." method="_on_CheckPoints_body_entered"]
 
 
