@@ -10,9 +10,14 @@ func _ready():
 		CHECKPOINTS.append(Vector2(area.position.x, area.position.y))
 	
 	for i in range(GameVariables.check_point):
-		get_child(2).get_child(i).queue_free() 
-		get_child(7).get_child(i).queue_free() 
-		get_child(8).get_child(i).open = true
+		get_child(2).get_child(i).queue_free()
+		 
+		if get_child(7).get_child(i) != null:
+			get_child(7).get_child(i).queue_free() 
+			
+		if get_child(8).get_child(i) != null:
+			get_child(8).get_child(i).open = true
+		
 
 
 func _on_CheckPoints_body_entered(body):

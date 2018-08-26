@@ -32,19 +32,24 @@ var left = false
 var run = false
 var walk = false
 
-var testing = true
+var testing = false
 
 export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
 export (PackedScene) var Blocks
 
-func _ready():
-	if !testing:
-		if GameVariables.check_point > 0:
-			start_pos = get_parent().CHECKPOINTS[GameVariables.check_point - 1]
-	
-		self.position.x = start_pos.x
-		self.position.y = start_pos.y
+
+func _enter_tree():
+	if self.get_parent().name == "WorldWin":
+		$Camera2D.current = false
+		$VictoryCamera.current = true
+	else:
+		if !testing:
+			if GameVariables.check_point > 0:
+				start_pos = get_parent().CHECKPOINTS[GameVariables.check_point - 1]
+		
+			self.position.x = start_pos.x
+			self.position.y = start_pos.y
 
 func _physics_process(delta):
 	friction = false
@@ -58,8 +63,6 @@ func _physics_process(delta):
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("ui_reset"):
-		print("Game")
-		print(GameVariables.check_point)
 		get_tree().change_scene(world_scene)
 	
 	
@@ -181,11 +184,9 @@ func directional_action():
 		
 		if !low:
 			motion.x = lerp(motion.x, 0, 0.2)
-			
-			if in_air and is_on_floor():
-				$Sprite.play("Land")
-			else:
-				$Sprite.play("Idle")
+		
+			$Sprite.play("Idle")
+			in_air = false
 			
 		
 		friction = true
@@ -251,7 +252,7 @@ func on_floor_action():
 			motion.x = lerp(motion.x, 0, 0.2)
 	else:
 		in_air = true
-		
+
 		slide = false
 		low = false
 		
@@ -262,13 +263,7 @@ func on_floor_action():
 		
 		if friction:
 			motion.x = lerp(motion.x, 0, 0.05)
-	
-	
-func _on_Sprite_animation_finished():
-	if $Sprite.animation == "Land":
-		$Sprite.play("Idel") 
-		in_air = false
-		
+			
 func items_action():
 	if Input.is_action_just_pressed("ui_item") and blocks > 0:
 		print("Use rock")

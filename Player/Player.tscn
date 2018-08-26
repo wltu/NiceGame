@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Sprites/Player/Idel/Idel0.png" type="Texture" id=2]
@@ -20,25 +20,23 @@
 [ext_resource path="res://Sprites/Sprites/Player/Wall/Wall0.png" type="Texture" id=18]
 [ext_resource path="res://Sprites/Sprites/Player/Fall/Fall0.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/Sprites/Player/Fall/Fall1.png" type="Texture" id=20]
-[ext_resource path="res://Sprites/Sprites/Player/Duck/duck1.png" type="Texture" id=21]
-[ext_resource path="res://Sprites/Sprites/Player/Land/Land0.png" type="Texture" id=22]
-[ext_resource path="res://Sprites/Sprites/Player/Land/Land1.png" type="Texture" id=23]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk0.png" type="Texture" id=24]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk1.png" type="Texture" id=25]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk2.png" type="Texture" id=26]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk3.png" type="Texture" id=27]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk4.png" type="Texture" id=28]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk5.png" type="Texture" id=29]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk6.png" type="Texture" id=30]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk7.png" type="Texture" id=31]
-[ext_resource path="res://Sprites/Sprites/Player/Duck/duck0.png" type="Texture" id=32]
-[ext_resource path="res://Sprites/Sprites/Player/Duck/duck2.png" type="Texture" id=33]
-[ext_resource path="res://Sprites/Sprites/Player/Duck/duck3.png" type="Texture" id=34]
-[ext_resource path="res://Sprites/Sprites/Player/Peak/Peak0.png" type="Texture" id=35]
-[ext_resource path="res://Sprites/Sprites/Player/Peak/Peak1.png" type="Texture" id=36]
-[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump0.png" type="Texture" id=37]
-[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump1.png" type="Texture" id=38]
-[ext_resource path="res://Sprites/Sprites/Sky.png" type="Texture" id=39]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk0.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk1.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk2.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk3.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk4.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk5.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk6.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk7.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Sprites/Player/Duck/duck0.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Sprites/Player/Duck/duck1.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Sprites/Player/Duck/duck2.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Sprites/Player/Duck/duck3.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Sprites/Player/Peak/Peak0.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Sprites/Player/Peak/Peak1.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump0.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump1.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/Sprites/Sky.png" type="Texture" id=37]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -59,7 +57,7 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ) ],
-"loop": true,
+"loop": false,
 "name": "Wall",
 "speed": 5.0
 }, {
@@ -68,27 +66,22 @@ animations = [ {
 "name": "Fall",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 22 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "Land",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
 "loop": true,
 "name": "Walk",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 32 ), ExtResource( 21 ), ExtResource( 33 ), ExtResource( 34 ) ],
+"frames": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ) ],
 "loop": false,
 "name": "Duck",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 35 ), ExtResource( 36 ) ],
+"frames": [ ExtResource( 33 ), ExtResource( 34 ) ],
 "loop": true,
 "name": "Peak",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 37 ), ExtResource( 38 ) ],
+"frames": [ ExtResource( 35 ), ExtResource( 36 ) ],
 "loop": true,
 "name": "Jump",
 "speed": 10.0
@@ -113,7 +106,7 @@ custom_solver_bias = 0.0
 radius = 20.0
 height = 25.0
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -150,6 +143,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="HBox" type="Area2D" parent="." index="3"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -166,10 +160,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 
+z_index = 10
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 1.5, 1.5 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
@@ -178,17 +173,17 @@ limit_smoothed = false
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = false
-smoothing_speed = 5.0
+smoothing_speed = 2.5
 offset_v = 0.0
 offset_h = 0.0
-drag_margin_left = 0.2
+drag_margin_left = 0.1
 drag_margin_top = 0.2
-drag_margin_right = 0.2
+drag_margin_right = 0.1
 drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Drag Margin", "Editor", "Smoothing", "Transform", "Z Index" ]
 
 [node name="VictoryCamera" type="Camera2D" parent="." index="5"]
 
@@ -196,7 +191,7 @@ visible = false
 anchor_mode = 1
 rotating = false
 current = false
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 2, 2 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
@@ -239,10 +234,8 @@ _sections_unfolded = [ "Motion" ]
 
 [node name="Sky" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
 
-texture = ExtResource( 39 )
+texture = ExtResource( 37 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform" ]
-
-[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 
 
