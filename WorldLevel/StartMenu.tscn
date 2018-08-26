@@ -1,10 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://WorldLevel/StartMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Sprites/Mountain.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=3]
 
-[node name="StartMenu" type="Control"]
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 1, 0.617188, 0.617188, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color( 0.8, 0.8, 0.8, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+
+[node name="StartMenu" type="Control" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -74,7 +102,7 @@ uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Grow Direction", "Hint", "custom_colors" ]
+_sections_unfolded = [ "Grow Direction", "Hint", "Theme", "custom_colors", "custom_fonts", "custom_styles" ]
 
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer" index="1"]
 
@@ -92,6 +120,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/hover = SubResource( 1 )
 custom_colors/font_color_disabled = Color( 1, 0, 0, 1 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0, 0.0859375, 1, 1 )

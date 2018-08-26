@@ -21,6 +21,10 @@ var low = false
 var friction = false
 var slide = false
 var in_air = false;
+var wall_jump = true
+var direction = 0  #-1 for left, 1 for right, 0 for idle
+
+var blocks = 0
 
 var counter = 0
 var right = false
@@ -28,7 +32,24 @@ var left = false
 var run = false
 var walk = false
 
+var testing = false
+
+export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
+export (PackedScene) var Blocks
+
+
+func _enter_tree():
+	if self.get_parent().name == "WorldWin":
+		$Camera2D.current = false
+		$VictoryCamera.current = true
+	else:
+		if !testing:
+			if GameVariables.check_point > 0:
+				start_pos = get_parent().CHECKPOINTS[GameVariables.check_point - 1]
+		
+			self.position.x = start_pos.x
+			self.position.y = start_pos.y
 
 func _physics_process(delta):
 	friction = false
@@ -44,13 +65,19 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_reset"):
 		get_tree().change_scene(world_scene)
 	
+	
+	detect_area()
+	
 	directional_action()
 	
 	on_floor_action()
 	
 	on_wall_action()
 	
+	items_action()
+	
 	motion = move_and_slide(motion, UP)
+	
 	
 func change_collsion_shape():
 	if low:
@@ -59,6 +86,28 @@ func change_collsion_shape():
 	else:
 		$UpRight.disabled = false
 		$Sliding.disabled = true
+	
+func detect_area():
+	var bodies = $HBox.get_overlapping_bodies()
+	var areas = $HBox.get_overlapping_areas()
+	
+	var has_metal = false
+	
+	for body in bodies:
+		if body.name == "Metal":
+			has_metal = true
+		elif body.name.begins_with("MovingPlatform"):
+			position.x += body.motion
+	
+	for area in areas:
+		if area.name == "SpikeArea":
+			print("You Died!!")
+			get_tree().change_scene(world_scene)
+		
+	if has_metal:
+		wall_jump = false
+	else:
+		wall_jump = true
 	
 func directional_action():
 	if right:
@@ -75,6 +124,11 @@ func directional_action():
 			left = false
 	
 	if Input.is_action_pressed("ui_right"):
+		direction = 1
+		
+		if is_on_floor():
+			in_air = false
+		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
@@ -96,6 +150,11 @@ func directional_action():
 			counter = 0
 		
 	elif Input.is_action_pressed("ui_left"):
+		direction = -1
+		
+		if is_on_floor():
+			in_air = false
+		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
@@ -116,14 +175,19 @@ func directional_action():
 			left = false
 			counter = 0
 	else:
+		direction = 0
 		run = false
+		#wall_jump = true
 		
 		if slide:
 			motion.x = lerp(motion.x, 0, 0.05)
 		
 		if !low:
 			motion.x = lerp(motion.x, 0, 0.2)
+		
 			$Sprite.play("Idle")
+			in_air = false
+			
 		
 		friction = true
 		
@@ -133,7 +197,7 @@ func directional_action():
 		left = true
 	
 func on_wall_action():
-	if is_on_wall() and in_air and !test_move(body_check, Vector2(0,75)):
+	if is_on_wall() and in_air and wall_jump and !test_move(body_check, Vector2(0,75)):
 		$Sprite.flip_h = !$Sprite.flip_h
 		
 		if !$Sprite.flip_h:
@@ -156,7 +220,6 @@ func on_wall_action():
 
 func on_floor_action():
 	if is_on_floor():
-		in_air = false
 		if Input.is_action_pressed("ui_down"):
 			if !slide:
 				motion.x = 0
@@ -189,13 +252,31 @@ func on_floor_action():
 			motion.x = lerp(motion.x, 0, 0.2)
 	else:
 		in_air = true
-		
+
 		slide = false
 		low = false
+		
 		if motion.y < 0:
 			$Sprite.play("Jump") 
 		else:
-			$Sprite.play("Fall") 
+			$Sprite.play("Fall")
 		
 		if friction:
 			motion.x = lerp(motion.x, 0, 0.05)
+			
+func items_action():
+	if Input.is_action_just_pressed("ui_item") and blocks > 0:
+		print("Use rock")
+		blocks -= 1
+		
+		var block = Blocks.instance()
+		var pos = self.global_position
+		
+		if $Sprite.flip_h:
+			pos.x -= 32
+		else:
+			pos.x += 32
+			
+		block.start(pos)
+		self.get_node("../Doors").add_child(block)
+		
