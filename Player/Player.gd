@@ -13,6 +13,7 @@ const WALL_SLIDE_SLEED = 75
 const MAX_X = 640
 const MAX_Y = 360
 const TIME_GAP = 10
+const MONSTERS = ["Skeleton"]
 
 var motion = Vector2()
 var body_check = Transform2D()
@@ -32,7 +33,7 @@ var left = false
 var run = false
 var walk = false
 
-var testing = false
+var testing = true
 
 export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
@@ -53,7 +54,6 @@ func _enter_tree():
 
 func _physics_process(delta):
 	friction = false
-	
 	motion.y += GRAVITY
 	
 	body_check = Transform2D(Vector2(0, 0), Vector2(0, 0), position)
@@ -67,13 +67,9 @@ func _physics_process(delta):
 	
 	
 	detect_area()
-	
 	directional_action()
-	
 	on_floor_action()
-	
 	on_wall_action()
-	
 	items_action()
 	
 	motion = move_and_slide(motion, UP)
@@ -94,7 +90,10 @@ func detect_area():
 	var has_metal = false
 	
 	for body in bodies:
-		if body.name == "Metal":
+		if body.name in MONSTERS:
+			print("You Died!!")
+			get_tree().change_scene(world_scene)
+		elif body.name == "Metal":
 			has_metal = true
 		elif body.name.begins_with("MovingPlatform"):
 			position.x += body.motion
