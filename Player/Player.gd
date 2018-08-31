@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 const UP = Vector2(0, -1)
-const GRAVITY = 20
 const ACCERLERATION = 50
 const WALK_SPEED = 200
 const RUN_SPEED = 300
@@ -14,6 +13,7 @@ const MAX_X = 640
 const MAX_Y = 360
 const TIME_GAP = 10
 const MONSTERS = ["Skeleton"]
+const BALL_MOTION = Vector2(400, -600)
 
 var motion = Vector2()
 var body_check = Transform2D()
@@ -38,7 +38,7 @@ var testing = true
 export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
 export (PackedScene) var Blocks
-
+export (PackedScene) var Balls
 
 func _enter_tree():
 	if self.get_parent().name == "WorldWin":
@@ -54,7 +54,7 @@ func _enter_tree():
 
 func _physics_process(delta):
 	friction = false
-	motion.y += GRAVITY
+	motion.y += GameVariables.GRAVITY
 	
 	body_check = Transform2D(Vector2(0, 0), Vector2(0, 0), position)
 	
@@ -264,6 +264,24 @@ func on_floor_action():
 			motion.x = lerp(motion.x, 0, 0.05)
 			
 func items_action():
+	#add select item feature...
+	
+	# Testing Ball throws
+	if Input.is_action_just_pressed("ui_item"):
+		print("lol")
+		var ball = Balls.instance()
+		var pos = self.global_position
+		if $Sprite.flip_h:
+			pos.x -= 20
+			BALL_MOTION.x = -abs(BALL_MOTION.x)
+		else:
+			pos.x += 20
+			BALL_MOTION.x = abs(BALL_MOTION.x)
+		
+		ball.start(pos, BALL_MOTION)
+
+		self.get_node("../Balls").add_child(ball)
+	
 	if Input.is_action_just_pressed("ui_item") and blocks > 0:
 		print("Use rock")
 		blocks -= 1

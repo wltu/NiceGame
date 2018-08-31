@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://WorldLevel/World Complete.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=3]
-[ext_resource path="res://Enemy/Skeleton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://WorldLevel/WorldItems/Rock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://WorldLevel/WorldItems/Ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://WorldLevel/World Complete.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=5]
+[ext_resource path="res://Enemy/Skeleton.tscn" type="PackedScene" id=6]
 
-[node name="World2" type="Node"]
+[node name="World2" type="Node" index="0"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 64, 192 )
+position = Vector2( 704, 160 )
 start_pos = Vector2( 60, 200 )
 world_scene = "res://WorldLevel/World2.tscn"
+Blocks = ExtResource( 2 )
+Balls = ExtResource( 3 )
 
-[node name="World Complete" parent="." index="1" instance=ExtResource( 2 )]
+[node name="World Complete" parent="." index="1" instance=ExtResource( 4 )]
 
 position = Vector2( 512, 256 )
 next_world = "res://WorldLevel/WorldWin.tscn"
@@ -21,7 +25,7 @@ next_world = "res://WorldLevel/WorldWin.tscn"
 [node name="AutoTile" type="TileMap" parent="." index="2"]
 
 mode = 0
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 64, 64 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -42,8 +46,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Skeleton" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Skeleton" parent="." index="3" instance=ExtResource( 6 )]
 
-position = Vector2( 480, 32 )
+position = Vector2( 480, 288 )
+
+[node name="Balls" type="Node" parent="." index="4"]
+
+[node name="Ball" parent="Balls" index="0" instance=ExtResource( 3 )]
+
+position = Vector2( 800, 192 )
 
 

@@ -20,7 +20,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		motion.y = 0
 	else:
-		motion.y += 20
+		motion.y += GameVariables.GRAVITY
 
 	var bodies = $Area2D.get_overlapping_bodies()
 	
