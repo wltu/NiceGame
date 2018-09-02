@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-
 const UP = Vector2(0, -1)
 var motion = Vector2()
 var bounce  = true
@@ -17,6 +16,8 @@ func start(pos, motion):
 	self.motion = motion
 
 func _physics_process(delta):
+	$Sprite.rotate(motion.x*delta / 37.7)
+	
 	if !roll and !bounce:
 		$CollisionShape2D.disabled = true
 	else:
@@ -43,14 +44,12 @@ func _physics_process(delta):
 				roll = false
 			
 			if is_on_wall():
-				print("roll back")
 				motion.x = -0.75*motion.x
 	
 			if !bounce:
 				motion.x -= 0.1*motion.x
 	
 				if abs(motion.x) < 10:
-					print("Stop")
 					roll = false
 					motion.x = 0
 			

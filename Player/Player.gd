@@ -254,6 +254,7 @@ func on_floor_action():
 
 		slide = false
 		low = false
+		change_collsion_shape()
 		
 		if motion.y < 0:
 			$Sprite.play("Jump") 
@@ -267,20 +268,20 @@ func items_action():
 	#add select item feature...
 	
 	# Testing Ball throws
-	if Input.is_action_just_pressed("ui_item"):
-		print("lol")
-		var ball = Balls.instance()
-		var pos = self.global_position
-		if $Sprite.flip_h:
-			pos.x -= 20
-			BALL_MOTION.x = -abs(BALL_MOTION.x)
-		else:
-			pos.x += 20
-			BALL_MOTION.x = abs(BALL_MOTION.x)
-		
-		ball.start(pos, BALL_MOTION)
-
-		self.get_node("../Balls").add_child(ball)
+#	if Input.is_action_just_pressed("ui_item"):
+#		print("lol")
+#		var ball = Balls.instance()
+#		var pos = self.global_position
+#		if $Sprite.flip_h:
+#			pos.x -= 20
+#			BALL_MOTION.x = -abs(BALL_MOTION.x)
+#		else:
+#			pos.x += 20
+#			BALL_MOTION.x = abs(BALL_MOTION.x)
+#
+#		ball.start(pos, BALL_MOTION)
+#
+#		self.get_node("../Balls").add_child(ball)
 	
 	if Input.is_action_just_pressed("ui_item") and blocks > 0:
 		print("Use rock")

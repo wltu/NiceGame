@@ -7,6 +7,7 @@ var motion = Vector2()
 
 func _ready():
 	motion.x = SPEED
+	$Sprite.play("Walk")
 	pass
 
 func _physics_process(delta):
