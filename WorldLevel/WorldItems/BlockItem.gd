@@ -5,7 +5,7 @@ func _physics_process(delta):
 	
 	for body in bodies:
 		if body.name == "Player":
-			body.blocks += 2
+			body.items[0] += 2
 			
 			print("got blocks")
 			

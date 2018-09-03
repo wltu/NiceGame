@@ -25,7 +25,10 @@ var in_air = false;
 var wall_jump = true
 var direction = 0  #-1 for left, 1 for right, 0 for idle
 
-var blocks = 0
+var total_items = 2
+var items = [5,5] #blocks, balls.
+var item_index = 0
+
 
 var counter = 0
 var right = false
@@ -266,35 +269,43 @@ func on_floor_action():
 			
 func items_action():
 	#add select item feature...
-	
-	# Testing Ball throws
-#	if Input.is_action_just_pressed("ui_item"):
-#		print("lol")
-#		var ball = Balls.instance()
-#		var pos = self.global_position
-#		if $Sprite.flip_h:
-#			pos.x -= 20
-#			BALL_MOTION.x = -abs(BALL_MOTION.x)
-#		else:
-#			pos.x += 20
-#			BALL_MOTION.x = abs(BALL_MOTION.x)
-#
-#		ball.start(pos, BALL_MOTION)
-#
-#		self.get_node("../Balls").add_child(ball)
-	
-	if Input.is_action_just_pressed("ui_item") and blocks > 0:
-		print("Use rock")
-		blocks -= 1
+	if Input.is_action_just_pressed("ui_switch"):
+		item_index += 1
+		item_index %= total_items
 		
-		var block = Blocks.instance()
-		var pos = self.global_position
+		$Camera2D.get_child(0).update_select()
 		
-		if $Sprite.flip_h:
-			pos.x -= 32
-		else:
-			pos.x += 32
+	
+	
+	if Input.is_action_just_pressed("ui_item"):
+		if item_index == 0 and items[0] > 0:
+			print("Use rock")
+			items[0] -= 1
 			
-		block.start(pos)
-		self.get_node("../Doors").add_child(block)
+			var block = Blocks.instance()
+			var pos = self.global_position
+			
+			if $Sprite.flip_h:
+				pos.x -= 32
+			else:
+				pos.x += 32
+				
+			block.start(pos)
+			self.get_node("../Rocks").add_child(block)
+		elif item_index == 1 and items[1] > 0:
+			if Input.is_action_just_pressed("ui_item"):
+				print("Throw Ball")
+				items[1] -= 1
+				
+				var ball = Balls.instance()
+				var pos = self.global_position
+				if $Sprite.flip_h:
+					pos.x -= 20
+					BALL_MOTION.x = -abs(BALL_MOTION.x)
+				else:
+					pos.x += 20
+					BALL_MOTION.x = abs(BALL_MOTION.x)
 		
+				ball.start(pos, BALL_MOTION)
+		
+				self.get_node("../Balls").add_child(ball)
