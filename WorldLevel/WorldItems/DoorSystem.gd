@@ -11,7 +11,8 @@ func _physics_process(delta):
 			if GameVariables.key > 0:
 				GameVariables.key -= 1
 				open = true
-				
+	
+	
 	open_door()
 	
 func open_door():

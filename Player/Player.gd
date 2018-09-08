@@ -26,7 +26,7 @@ var wall_jump = true
 var direction = 0  #-1 for left, 1 for right, 0 for idle
 
 var total_items = 2
-var items = [5,5] #blocks, balls.
+var items = [0,0] #blocks, balls.
 var item_index = 0
 
 
@@ -36,7 +36,7 @@ var left = false
 var run = false
 var walk = false
 
-var testing = true
+var testing = false
 
 export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
@@ -283,6 +283,7 @@ func items_action():
 			items[0] -= 1
 			
 			var block = Blocks.instance()
+			
 			var pos = self.global_position
 			
 			if $Sprite.flip_h:
@@ -291,7 +292,11 @@ func items_action():
 				pos.x += 32
 				
 			block.start(pos)
+			#block.name = "Rock" + string(self.get_node("../Rocks").get_child_count())
+			print(block.name)
 			self.get_node("../Rocks").add_child(block)
+			print(self.get_node("../Rocks").get_child(self.get_node("../Rocks").get_child_count() - 1).name)
+			
 		elif item_index == 1 and items[1] > 0:
 			if Input.is_action_just_pressed("ui_item"):
 				print("Throw Ball")
