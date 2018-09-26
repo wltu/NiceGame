@@ -1,7 +1,13 @@
  # World DoorSystem.gd
 extends Area2D
 
+
+export (Color) var color_frame = Color(1,1,1)
 var open = false
+
+func _ready():
+	$ClosedDoor/ColorFrame.modulate = color_frame
+	$OpenDoor/ColorFrame.modulate = color_frame
 
 func _physics_process(delta):
 	var bodies = get_overlapping_bodies()

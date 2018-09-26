@@ -26,7 +26,7 @@ var wall_jump = true
 var direction = 0  #-1 for left, 1 for right, 0 for idle
 
 var total_items = 2
-var items = [0,0] #blocks, balls.
+var items = [5,5] #blocks, balls.
 var item_index = 0
 
 
@@ -36,7 +36,7 @@ var left = false
 var run = false
 var walk = false
 
-var testing = false
+var testing = true
 
 export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
