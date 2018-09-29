@@ -27,6 +27,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Visibility" ]
+special_door = false
 color_frame = Color( 1, 1, 1, 1 )
 
 [node name="DoorArea" type="CollisionShape2D" parent="." index="0"]

@@ -201,9 +201,9 @@ position = Vector2( 1504, 672 )
 
 [node name="AutoDoor0" parent="Doors" index="3" instance=ExtResource( 11 )]
 
-modulate = Color( 1, 0, 0, 1 )
-self_modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 1984, 672 )
+special_door = true
+color_frame = Color( 1, 0, 0, 1 )
 
 [node name="MovingPlatform" type="Node" parent="." index="9"]
 

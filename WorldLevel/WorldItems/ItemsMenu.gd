@@ -1,6 +1,6 @@
 extends Node2D
 
-var select_position = [96, 160]
+var select_position = [32, 96]
 var selection = 0
 
 func update_select():
