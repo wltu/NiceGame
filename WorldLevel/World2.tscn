@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://WorldLevel/WorldItems/Rock.tscn" type="PackedScene" id=2]
@@ -8,12 +8,18 @@
 [ext_resource path="res://Enemy/Skeleton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://WorldLevel/WorldItems/Button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://WorldLevel/WorldItems/DoorSystem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://WorldLevel/WorldItems/Ramp.tscn" type="PackedScene" id=9]
 
-[node name="World2" type="Node"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="World2" type="Node" index="0"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 704, 160 )
+position = Vector2( 1440, 96 )
 start_pos = Vector2( 60, 200 )
 world_scene = "res://WorldLevel/World2.tscn"
 Blocks = ExtResource( 2 )
@@ -42,7 +48,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -1, 0, 6, -65536, 0, 196609, -65535, 0, 196609, -65534, 0, 196609, -65533, 0, 196609, -65532, 0, 196609, -65531, 0, 196609, -65530, 0, 196609, -65529, 0, 196609, -65528, 0, 196609, -65527, 0, 196609, -65526, 0, 196609, -65525, 0, 196609, -65524, 0, 196609, -65523, 0, 196609, -65522, 0, 196609, -65521, 0, 196609, -65520, 0, 7, 65535, 0, 65541, 16, 0, 65541, 131071, 0, 65541, 65542, 0, 6, 65543, 0, 196609, 65544, 0, 7, 65549, 0, 196608, 65550, 0, 196609, 65551, 0, 196609, 65552, 0, 196612, 196607, 0, 65541, 131077, 0, 1, 131078, 0, 11, 131080, 0, 65542, 131081, 0, 7, 131088, 0, 65541, 262143, 0, 65541, 196612, 0, 1, 196613, 0, 65540, 196614, 0, 131074, 196617, 0, 65541, 196624, 0, 65541, 327679, 0, 8, 262144, 0, 65536, 262145, 0, 65536, 262146, 0, 65536, 262147, 0, 65536, 262148, 0, 65540, 262149, 0, 196619, 262150, 0, 131074, 262153, 0, 65541, 262160, 0, 65541, 393215, 0, 65537, 327680, 0, 131072, 327681, 0, 131072, 327682, 0, 131072, 327683, 0, 131072, 327684, 0, 131072, 327685, 0, 131072, 327686, 0, 65547, 327687, 0, 196609, 327688, 0, 196609, 327689, 0, 196611, 327690, 0, 196609, 327691, 0, 196609, 327692, 0, 196609, 327693, 0, 196609, 327694, 0, 196609, 327695, 0, 196609, 327696, 0, 65543 )
+tile_data = PoolIntArray( -1, 0, 6, -65536, 0, 196609, -65535, 0, 196609, -65534, 0, 196609, -65533, 0, 196609, -65532, 0, 196609, -65531, 0, 196609, -65530, 0, 196609, -65529, 0, 196609, -65528, 0, 196609, -65527, 0, 196609, -65526, 0, 196609, -65525, 0, 196609, -65524, 0, 196609, -65523, 0, 196609, -65522, 0, 196609, -65521, 0, 196609, -65520, 0, 7, 65535, 0, 65541, 16, 0, 65541, 131071, 0, 65541, 65542, 0, 6, 65543, 0, 196609, 65544, 0, 7, 65549, 0, 196608, 65550, 0, 196609, 65551, 0, 196609, 65552, 0, 65543, 196607, 0, 65541, 131077, 0, 1, 131078, 0, 11, 131080, 0, 65542, 131081, 0, 7, 131094, 0, 5, 262143, 0, 65541, 196612, 0, 1, 196613, 0, 65540, 196614, 0, 131074, 196617, 0, 65541, 196629, 0, 6, 196630, 0, 65543, 327679, 0, 8, 262144, 0, 65536, 262145, 0, 65536, 262146, 0, 65536, 262147, 0, 65536, 262148, 0, 65540, 262149, 0, 196619, 262150, 0, 131074, 262153, 0, 65541, 262160, 0, 6, 262161, 0, 196609, 262162, 0, 196609, 262163, 0, 196609, 262164, 0, 196609, 262165, 0, 65543, 393215, 0, 65537, 327680, 0, 131072, 327681, 0, 131072, 327682, 0, 131072, 327683, 0, 131072, 327684, 0, 131072, 327685, 0, 131072, 327686, 0, 65547, 327687, 0, 196609, 327688, 0, 196609, 327689, 0, 196611, 327690, 0, 196609, 327691, 0, 196609, 327692, 0, 196609, 327693, 0, 196609, 327694, 0, 196609, 327695, 0, 196609, 327696, 0, 65543 )
 _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
@@ -50,7 +56,7 @@ __meta__ = {
 
 [node name="Skeleton" parent="." index="3" instance=ExtResource( 6 )]
 
-position = Vector2( 480, 288 )
+position = Vector2( 1120, 224 )
 
 [node name="Buttons" type="Node" parent="." index="4"]
 
@@ -76,7 +82,7 @@ color_frame = Color( 1, 0, 0, 1 )
 [node name="ButtonDoor1" parent="Doors" index="1" instance=ExtResource( 8 )]
 
 self_modulate = Color( 0, 0.109375, 1, 1 )
-position = Vector2( 800, 288 )
+position = Vector2( 896, 288 )
 special_door = true
 color_frame = Color( 0, 0, 1, 1 )
 
@@ -84,8 +90,60 @@ color_frame = Color( 0, 0, 1, 1 )
 
 [node name="Balls" type="Node" parent="." index="7"]
 
-[node name="Ball" parent="Balls" index="0" instance=ExtResource( 3 )]
+[node name="EnemyStop" type="Node" parent="." index="8"]
 
-position = Vector2( 800, 192 )
+[node name="Stop0" type="Area2D" parent="EnemyStop" index="0"]
+
+position = Vector2( 1008, 240 )
+scale = Vector2( 0.5, 0.5 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyStop/Stop0" index="0"]
+
+position = Vector2( 32, 16 )
+scale = Vector2( 1.23077, 1.23077 )
+shape = SubResource( 1 )
+
+[node name="Ramps" type="Node" parent="." index="9"]
+
+[node name="Ramp" parent="Ramps" index="0" instance=ExtResource( 9 )]
+
+position = Vector2( 1264.52, 224.294 )
+rotation = 4.71239
+scale = Vector2( 1, 2.52825 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Label" type="Label" parent="." index="10"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 132.0
+margin_top = -651.0
+margin_right = 215.0
+margin_bottom = -586.0
+rect_scale = Vector2( 10, 10 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Add Ramps
+Rolling Rock
+Kill Skeleton.
+"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Material", "Rect", "Visibility", "custom_colors", "custom_constants", "custom_fonts" ]
 
 

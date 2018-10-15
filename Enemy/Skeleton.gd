@@ -13,7 +13,7 @@ func _ready():
 func _physics_process(delta):
 	motion.y += GRAVITY
 	
-	if is_on_wall():
+	if is_on_wall() or detect_area():
 		motion.x = -motion.x
 		$Sprite.flip_h = !$Sprite.flip_h
 	if is_on_floor():
@@ -21,3 +21,13 @@ func _physics_process(delta):
 	
 	move_and_slide(motion, UP)
 	pass
+	
+func detect_area():
+	var areas = $Area2D.get_overlapping_areas()
+	
+	for area in areas:
+		if(area.name.begins_with("Stop")):
+			return true
+			
+	return false
+	

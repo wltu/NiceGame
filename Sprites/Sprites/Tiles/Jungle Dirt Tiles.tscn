@@ -17,7 +17,7 @@ func _on_Area2D_area_entered(area):
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[node name="Jungle Dirt Tiles" type="Node"]
+[node name="Jungle Dirt Tiles" type="Node" index="0"]
 
 script = SubResource( 1 )
 

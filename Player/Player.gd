@@ -25,8 +25,6 @@ var in_air = false;
 var wall_jump = true
 var direction = 0  #-1 for left, 1 for right, 0 for idle
 
-var total_items = 2
-var items = [0,0] #blocks, balls.
 var item_index = 0
 
 
@@ -36,7 +34,7 @@ var left = false
 var run = false
 var walk = false
 
-var testing = false
+var testing = true
 
 export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
@@ -271,16 +269,16 @@ func items_action():
 	#add select item feature...
 	if Input.is_action_just_pressed("ui_switch"):
 		item_index += 1
-		item_index %= total_items
+		item_index %= GameVariables.total_items
 		
 		$Camera2D.get_child(0).update_select()
 		
 	
 	
 	if Input.is_action_just_pressed("ui_item"):
-		if item_index == 0 and items[0] > 0:
+		if item_index == 0 and GameVariables.items[0] > 0:
 			print("Use rock")
-			items[0] -= 1
+			GameVariables.items[0] -= 1
 			
 			var block = Blocks.instance()
 			
@@ -297,10 +295,10 @@ func items_action():
 			self.get_node("../Rocks").add_child(block)
 			print(self.get_node("../Rocks").get_child(self.get_node("../Rocks").get_child_count() - 1).name)
 			
-		elif item_index == 1 and items[1] > 0:
+		elif item_index == 1 and GameVariables.items[1] > 0:
 			if Input.is_action_just_pressed("ui_item"):
 				print("Throw Ball")
-				items[1] -= 1
+				GameVariables.items[1] -= 1
 				
 				var ball = Balls.instance()
 				var pos = self.global_position

@@ -8,8 +8,8 @@ var motion = Vector2()
 var player_push = false
 var direction = 0
 
-
 const UP = Vector2(0, -1)
+
 
 func start(pos):
 	position = pos
