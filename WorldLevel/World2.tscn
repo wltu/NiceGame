@@ -56,7 +56,7 @@ __meta__ = {
 
 [node name="Skeleton" parent="." index="3" instance=ExtResource( 6 )]
 
-position = Vector2( 1120, 224 )
+position = Vector2( 928, 32 )
 
 [node name="Buttons" type="Node" parent="." index="4"]
 
@@ -90,7 +90,13 @@ color_frame = Color( 0, 0, 1, 1 )
 
 [node name="Balls" type="Node" parent="." index="7"]
 
+[node name="Ball" parent="Balls" index="0" instance=ExtResource( 3 )]
+
+position = Vector2( 1312, 192 )
+
 [node name="EnemyStop" type="Node" parent="." index="8"]
+
+editor/display_folded = true
 
 [node name="Stop0" type="Area2D" parent="EnemyStop" index="0"]
 
@@ -114,10 +120,11 @@ shape = SubResource( 1 )
 
 [node name="Ramp" parent="Ramps" index="0" instance=ExtResource( 9 )]
 
-position = Vector2( 1264.52, 224.294 )
-rotation = 4.71239
-scale = Vector2( 1, 2.52825 )
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 1267.08, 225.033 )
+rotation = -0.0105729
+scale = Vector2( 2.5401, 1.0774 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+flip = true
 
 [node name="Label" type="Label" parent="." index="10"]
 

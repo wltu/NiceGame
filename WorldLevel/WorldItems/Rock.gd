@@ -16,6 +16,8 @@ func start(pos):
 
 func _physics_process(delta):
 	player_push = false
+	if is_on_wall():
+		motion.x = 0
 	
 	if is_on_floor():
 		motion.y = 0

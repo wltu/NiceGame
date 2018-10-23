@@ -1,23 +1,27 @@
 extends KinematicBody2D
 
 const GRAVITY = 20
-const SPEED = 100
+const H_SPEED = 100
 const UP = Vector2(0, -1)
 var motion = Vector2()
+var dir = 1
 
 func _ready():
-	motion.x = SPEED
+	motion.x = H_SPEED
 	$Sprite.play("Walk")
 	pass
 
 func _physics_process(delta):
+	
 	motion.y += GRAVITY
 	
 	if is_on_wall() or detect_area():
-		motion.x = -motion.x
+		dir = dir * -1
 		$Sprite.flip_h = !$Sprite.flip_h
 	if is_on_floor():
 		motion.y = 0
+	
+	motion.x = dir*H_SPEED
 	
 	move_and_slide(motion, UP)
 	pass
