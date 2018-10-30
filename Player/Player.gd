@@ -217,6 +217,15 @@ func on_wall_action():
 				motion.x = -WALL_JUMP_SPEED_H
 	else:
 		$Sprite.offset.x = 0
+		
+		if is_on_wall():
+			var bodies = $HBox.get_overlapping_bodies()
+			
+			for body in bodies:
+				if (body.get_class() == "RigidBody2D"):
+					body.linear_velocity = Vector2(direction*WALK_SPEED, 0)
+			
+		
 
 func on_floor_action():
 	if is_on_floor():

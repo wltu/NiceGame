@@ -22,4 +22,5 @@ func _physics_process(delta):
 	var bodies = $Area2D.get_overlapping_bodies()
 	
 	for body in bodies:
-		body.motion.x += 5*dir
+#		body.motion.x += 5*dir
+		pass
