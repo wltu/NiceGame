@@ -4,9 +4,9 @@
 [ext_resource path="res://Sprites/Sprites/white.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Sprites/GameItems/doorFrame.png" type="Texture" id=3]
 [ext_resource path="res://WorldLevel/WorldItems/BlockItem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://WorldLevel/WorldItems/Ball.tscn" type="PackedScene" id=5]
+[ext_resource path="res://WorldLevel/WorldItems/BallItem.tscn" type="PackedScene" id=5]
 
-[node name="ItemsMenu" type="Node2D" index="0"]
+[node name="ItemsMenu" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -28,12 +28,9 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 position = Vector2( 32, 0 )
 
-[node name="Ball" parent="." index="3" instance=ExtResource( 5 )]
+[node name="BallItem" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 96, 0 )
-scale = Vector2( 2, 2 )
-_sections_unfolded = [ "Transform" ]
-moving = false
 
 [node name="NumBlocks" type="Label" parent="." index="4"]
 

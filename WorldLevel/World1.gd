@@ -22,4 +22,5 @@ func _ready():
 
 func _on_CheckPoints_body_entered(body):
 	get_child(2).get_child(0).queue_free()
+	GameVariables.save_state()
 	GameVariables.check_point += 1

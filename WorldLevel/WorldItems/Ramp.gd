@@ -22,5 +22,5 @@ func _physics_process(delta):
 	var bodies = $Area2D.get_overlapping_bodies()
 	
 	for body in bodies:
-#		body.motion.x += 5*dir
-		pass
+		if body.get_class() == "KinematicBody2D":
+			body.motion.x += 5*dir

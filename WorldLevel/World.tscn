@@ -26,7 +26,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 9.25227, 5 )
 
-[node name="World" type="Node"]
+[node name="World" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -45,7 +45,6 @@ next_world = "res://WorldLevel/World2.tscn"
 
 [node name="CheckPoints" type="Area2D" parent="." index="2"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -188,6 +187,8 @@ position = Vector2( 1120, 32 )
 
 [node name="Doors" type="Node" parent="." index="8"]
 
+editor/display_folded = true
+
 [node name="Door0" parent="Doors" index="0" instance=ExtResource( 11 )]
 
 position = Vector2( 672, 288 )
@@ -227,6 +228,8 @@ SPEED = 1
 
 [node name="Rocks" type="Node" parent="." index="10"]
 
+editor/display_folded = true
+
 [node name="Rock" parent="Rocks" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 96, 480 )
@@ -236,6 +239,8 @@ position = Vector2( 96, 480 )
 position = Vector2( 352, 544 )
 
 [node name="GroundTrigger" type="Node" parent="." index="11"]
+
+editor/display_folded = true
 
 [node name="GroundTrigger0" parent="GroundTrigger" index="0" instance=ExtResource( 13 )]
 
@@ -251,6 +256,7 @@ position = Vector2( 1696, 672 )
 
 [node name="SpikeArea" type="Area2D" parent="." index="13"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

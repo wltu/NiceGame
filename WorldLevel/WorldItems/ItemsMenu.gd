@@ -5,7 +5,7 @@ var selection = 0
 
 func _ready():
 	$BlockItem/Area2D/CollisionShape2D.disabled = true
-	$Ball/CollisionShape2D.disabled = true
+	$BallItem/Area2D/CollisionShape2D.disabled = true
 
 func _process(delta):
 	$NumBalls.text = str(GameVariables.items[1])

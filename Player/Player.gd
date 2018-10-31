@@ -34,7 +34,7 @@ var left = false
 var run = false
 var walk = false
 
-var testing = true
+var testing = false
 
 export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
@@ -64,6 +64,7 @@ func _physics_process(delta):
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("ui_reset"):
+		GameVariables.reset()
 		get_tree().change_scene(world_scene)
 	
 	
@@ -93,6 +94,7 @@ func detect_area():
 	for body in bodies:
 		if body.name in MONSTERS:
 			print("You Died!!")
+			GameVariables.reset()
 			get_tree().change_scene(world_scene)
 		elif body.name == "Metal":
 			has_metal = true
@@ -102,6 +104,7 @@ func detect_area():
 	for area in areas:
 		if area.name == "SpikeArea":
 			print("You Died!!")
+			GameVariables.reset()
 			get_tree().change_scene(world_scene)
 		
 	if has_metal:
@@ -223,7 +226,20 @@ func on_wall_action():
 			
 			for body in bodies:
 				if (body.get_class() == "RigidBody2D"):
-					body.linear_velocity = Vector2(direction*WALK_SPEED, 0)
+#					motion.x = direction*WALK_SPEED
+#
+#					if($Sprite.animation != "Walk"):
+#						run = false
+#						$Sprite.play("Walk") 
+#
+					if(direction != 0):
+						if run:
+							motion.x = direction*RUN_SPEED
+							body.linear_velocity = Vector2(direction*RUN_SPEED, 0)
+						else:
+							motion.x = direction*WALK_SPEED
+							body.linear_velocity = Vector2(direction*WALK_SPEED, 0)
+						
 			
 		
 

@@ -20,7 +20,7 @@ extents = Vector2( 10, 10 )
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 1440, 96 )
+position = Vector2( 864, -128 )
 start_pos = Vector2( 60, 200 )
 world_scene = "res://WorldLevel/World2.tscn"
 Blocks = ExtResource( 2 )
@@ -57,7 +57,7 @@ __meta__ = {
 
 [node name="Skeleton" parent="." index="3" instance=ExtResource( 6 )]
 
-position = Vector2( 928, 32 )
+position = Vector2( 1088, 192 )
 
 [node name="Buttons" type="Node" parent="." index="4"]
 
@@ -89,11 +89,15 @@ color_frame = Color( 0, 0, 1, 1 )
 
 [node name="Rocks" type="Node" parent="." index="6"]
 
+[node name="Rock" parent="Rocks" index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 1056, -128 )
+
 [node name="Balls" type="Node" parent="." index="7"]
 
 [node name="Ball" parent="Balls" index="0" instance=ExtResource( 3 )]
 
-position = Vector2( 1024, -96 )
+position = Vector2( 928, -192 )
 
 [node name="EnemyStop" type="Node" parent="." index="8"]
 
@@ -121,7 +125,7 @@ shape = SubResource( 1 )
 
 [node name="Ramp" parent="Ramps" index="0" instance=ExtResource( 9 )]
 
-position = Vector2( 1267.08, 228.033 )
+position = Vector2( 1265.24, 226.56 )
 rotation = -0.0105729
 scale = Vector2( 2.5401, 1.0774 )
 _sections_unfolded = [ "Transform", "Z Index" ]
@@ -133,10 +137,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 132.0
-margin_top = -651.0
-margin_right = 215.0
-margin_bottom = -586.0
+margin_top = -864.0
+margin_right = 83.0
+margin_bottom = -799.0
 rect_scale = Vector2( 10, 10 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -145,9 +148,10 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Add Ramps
-Rolling Rock
+text = "Add Ramps(check)
+Rolling Roc k(check)
 Kill Skeleton.
+Add Timer... to time each run. 
 "
 percent_visible = 1.0
 lines_skipped = 0
@@ -156,6 +160,6 @@ _sections_unfolded = [ "Material", "Rect", "Visibility", "custom_colors", "custo
 
 [node name="BigBall" parent="." index="11" instance=ExtResource( 10 )]
 
-position = Vector2( 1376, 128 )
+position = Vector2( 608, 64 )
 
 
