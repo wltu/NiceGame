@@ -35,6 +35,7 @@ var run = false
 var walk = false
 
 var testing = false
+var zoom = 1.5
 
 export (Vector2) var start_pos
 export(String, FILE, "*.tscn") var world_scene
@@ -67,6 +68,7 @@ func _physics_process(delta):
 		GameVariables.reset()
 		get_tree().change_scene(world_scene)
 	
+	camera_work()
 	
 	detect_area()
 	directional_action()
@@ -76,7 +78,19 @@ func _physics_process(delta):
 	
 	motion = move_and_slide(motion, UP)
 	
-	
+func camera_work():
+	if testing:
+		if Input.is_action_just_pressed("ui_zoom_out"):
+			zoom *= 2
+		if Input.is_action_just_pressed("ui_zoom_in"):
+			zoom /= 2
+		
+		if Input.is_action_just_pressed("ui_click"):
+			var mouse_position = get_global_mouse_position()
+			$Camera2D.position = Vector2(mouse_position.x - position.x, mouse_position.y - position.y)
+			
+		$Camera2D.zoom = Vector2(zoom, zoom)
+			
 func change_collsion_shape():
 	if low:
 		$UpRight.disabled = true
@@ -92,11 +106,13 @@ func detect_area():
 	var has_metal = false
 	
 	for body in bodies:
-		if body.name in MONSTERS:
-			print("You Died!!")
-			GameVariables.reset()
-			get_tree().change_scene(world_scene)
-		elif body.name == "Metal":
+		for monster_name in MONSTERS:
+			if body.name.begins_with(monster_name):
+				print("You Died!!")
+				GameVariables.reset()
+				get_tree().change_scene(world_scene)
+
+		if body.name == "Metal":
 			has_metal = true
 		elif body.name.begins_with("MovingPlatform"):
 			position.x += body.motion

@@ -16,11 +16,11 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="World2" type="Node" index="0"]
+[node name="World2" type="Node"]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
-position = Vector2( 864, -128 )
+position = Vector2( 160, -160 )
 start_pos = Vector2( 60, 200 )
 world_scene = "res://WorldLevel/World2.tscn"
 Blocks = ExtResource( 2 )
@@ -49,7 +49,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -1, 0, 6, -65536, 0, 196609, -65535, 0, 196609, -65534, 0, 196609, -65533, 0, 196609, -65532, 0, 196609, -65531, 0, 196609, -65530, 0, 196609, -65529, 0, 196609, -65528, 0, 196609, -65527, 0, 196609, -65526, 0, 196609, -65525, 0, 196609, -65524, 0, 196609, -65523, 0, 196609, -65522, 0, 196609, -65521, 0, 196609, -65520, 0, 7, 65535, 0, 65541, 16, 0, 65541, 131071, 0, 65541, 65542, 0, 6, 65543, 0, 196609, 65544, 0, 7, 65549, 0, 196608, 65550, 0, 196609, 65551, 0, 196609, 65552, 0, 65543, 196607, 0, 65541, 131077, 0, 1, 131078, 0, 11, 131080, 0, 65542, 131081, 0, 7, 131096, 0, 5, 262143, 0, 65541, 196612, 0, 1, 196613, 0, 65540, 196614, 0, 131074, 196617, 0, 65541, 196629, 0, 6, 196630, 0, 196609, 196631, 0, 196609, 196632, 0, 65543, 327679, 0, 8, 262144, 0, 65536, 262145, 0, 65536, 262146, 0, 65536, 262147, 0, 65536, 262148, 0, 65540, 262149, 0, 196619, 262150, 0, 131074, 262153, 0, 65541, 262160, 0, 6, 262161, 0, 196609, 262162, 0, 196609, 262163, 0, 196609, 262164, 0, 196609, 262165, 0, 65543, 393215, 0, 65537, 327680, 0, 131072, 327681, 0, 131072, 327682, 0, 131072, 327683, 0, 131072, 327684, 0, 131072, 327685, 0, 131072, 327686, 0, 65547, 327687, 0, 196609, 327688, 0, 196609, 327689, 0, 196611, 327690, 0, 196609, 327691, 0, 196609, 327692, 0, 196609, 327693, 0, 196609, 327694, 0, 196609, 327695, 0, 196609, 327696, 0, 65543 )
+tile_data = PoolIntArray( -1, 0, 6, -65536, 0, 196609, -65535, 0, 196609, -65534, 0, 196609, -65533, 0, 196609, -65532, 0, 196609, -65531, 0, 196609, -65530, 0, 196609, -65529, 0, 196609, -65528, 0, 196609, -65527, 0, 196609, -65526, 0, 196609, -65525, 0, 196609, -65524, 0, 196609, -65523, 0, 196609, -65522, 0, 196609, -65521, 0, 196609, -65520, 0, 7, 65535, 0, 65541, 16, 0, 131075, 17, 0, 196609, 18, 0, 196609, 19, 0, 196609, 20, 0, 196609, 21, 0, 196610, 131071, 0, 65541, 65542, 0, 6, 65543, 0, 196609, 65544, 0, 7, 65549, 0, 196608, 65550, 0, 196609, 65551, 0, 196609, 65552, 0, 65543, 196607, 0, 65541, 131077, 0, 1, 131078, 0, 11, 131080, 0, 65542, 131081, 0, 7, 131096, 0, 5, 262143, 0, 65541, 196612, 0, 1, 196613, 0, 65540, 196614, 0, 131074, 196617, 0, 65541, 196629, 0, 6, 196630, 0, 196609, 196631, 0, 196609, 196632, 0, 65543, 327679, 0, 8, 262144, 0, 65536, 262145, 0, 65536, 262146, 0, 65536, 262147, 0, 65536, 262148, 0, 65540, 262149, 0, 196619, 262150, 0, 131074, 262153, 0, 65541, 262160, 0, 6, 262161, 0, 196609, 262162, 0, 196609, 262163, 0, 196609, 262164, 0, 196609, 262165, 0, 65543, 393215, 0, 65537, 327680, 0, 131072, 327681, 0, 131072, 327682, 0, 131072, 327683, 0, 131072, 327684, 0, 131072, 327685, 0, 131072, 327686, 0, 65547, 327687, 0, 196609, 327688, 0, 196609, 327689, 0, 196611, 327690, 0, 196609, 327691, 0, 196609, 327692, 0, 196609, 327693, 0, 196609, 327694, 0, 196609, 327695, 0, 196609, 327696, 0, 65543 )
 _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
@@ -57,9 +57,17 @@ __meta__ = {
 
 [node name="Skeleton" parent="." index="3" instance=ExtResource( 6 )]
 
-position = Vector2( 1088, 192 )
+position = Vector2( 800, 288 )
 
-[node name="Buttons" type="Node" parent="." index="4"]
+[node name="Skeleton2" parent="." index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 896, 288 )
+
+[node name="Skeleton3" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( 704, 288 )
+
+[node name="Buttons" type="Node" parent="." index="6"]
 
 [node name="Button0" parent="Buttons" index="0" instance=ExtResource( 7 )]
 
@@ -72,7 +80,7 @@ modulate = Color( 0, 0.179688, 1, 1 )
 position = Vector2( 1024, 32 )
 rotation = 1.5708
 
-[node name="Doors" type="Node" parent="." index="5"]
+[node name="Doors" type="Node" parent="." index="7"]
 
 [node name="ButtonDoor0" parent="Doors" index="0" instance=ExtResource( 8 )]
 
@@ -83,25 +91,23 @@ color_frame = Color( 1, 0, 0, 1 )
 [node name="ButtonDoor1" parent="Doors" index="1" instance=ExtResource( 8 )]
 
 self_modulate = Color( 0, 0.109375, 1, 1 )
-position = Vector2( 896, 288 )
+position = Vector2( 1440, 128 )
 special_door = true
 color_frame = Color( 0, 0, 1, 1 )
 
-[node name="Rocks" type="Node" parent="." index="6"]
+[node name="Rocks" type="Node" parent="." index="8"]
 
 [node name="Rock" parent="Rocks" index="0" instance=ExtResource( 2 )]
 
-position = Vector2( 1056, -128 )
+position = Vector2( 32, -96 )
 
-[node name="Balls" type="Node" parent="." index="7"]
+[node name="Balls" type="Node" parent="." index="9"]
 
 [node name="Ball" parent="Balls" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 928, -192 )
 
-[node name="EnemyStop" type="Node" parent="." index="8"]
-
-editor/display_folded = true
+[node name="EnemyStop" type="Node" parent="." index="10"]
 
 [node name="Stop0" type="Area2D" parent="EnemyStop" index="0"]
 
@@ -121,25 +127,32 @@ position = Vector2( 32, 16 )
 scale = Vector2( 1.23077, 1.23077 )
 shape = SubResource( 1 )
 
-[node name="Ramps" type="Node" parent="." index="9"]
+[node name="Ramps" type="Node" parent="." index="11"]
 
-[node name="Ramp" parent="Ramps" index="0" instance=ExtResource( 9 )]
+[node name="Ramp0" parent="Ramps" index="0" instance=ExtResource( 9 )]
 
-position = Vector2( 1265.24, 226.56 )
-rotation = -0.0105729
-scale = Vector2( 2.5401, 1.0774 )
+position = Vector2( 1265, 224 )
+scale = Vector2( 2.5, 1 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 flip = true
 
-[node name="Label" type="Label" parent="." index="10"]
+[node name="Ramp1" parent="Ramps" index="1" instance=ExtResource( 9 )]
+
+position = Vector2( 1440.32, 160 )
+scale = Vector2( 3, 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+flip = true
+
+[node name="Label" type="Label" parent="." index="12"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = -864.0
-margin_right = 83.0
-margin_bottom = -799.0
+margin_left = 160.0
+margin_top = -1056.0
+margin_right = 356.0
+margin_bottom = -974.0
 rect_scale = Vector2( 10, 10 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -158,8 +171,8 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Material", "Rect", "Visibility", "custom_colors", "custom_constants", "custom_fonts" ]
 
-[node name="BigBall" parent="." index="11" instance=ExtResource( 10 )]
+[node name="BigBall" parent="." index="13" instance=ExtResource( 10 )]
 
-position = Vector2( 608, 64 )
+position = Vector2( 1504, 64 )
 
 
