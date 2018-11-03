@@ -21,21 +21,21 @@
 [ext_resource path="res://Sprites/Sprites/Player/Duck/duck1.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/Sprites/Player/Duck/duck2.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/Sprites/Player/Duck/duck3.png" type="Texture" id=21]
-[ext_resource path="res://Sprites/Sprites/Player/Slide/Slide0.png" type="Texture" id=22]
-[ext_resource path="res://Sprites/Sprites/Player/Slide/Slide1.png" type="Texture" id=23]
-[ext_resource path="res://Sprites/Sprites/Player/Peak/Peak0.png" type="Texture" id=24]
-[ext_resource path="res://Sprites/Sprites/Player/Peak/Peak1.png" type="Texture" id=25]
-[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump0.png" type="Texture" id=26]
-[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump1.png" type="Texture" id=27]
-[ext_resource path="res://Sprites/Sprites/Player/Wall/Wall0.png" type="Texture" id=28]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk0.png" type="Texture" id=29]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk1.png" type="Texture" id=30]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk2.png" type="Texture" id=31]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk3.png" type="Texture" id=32]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk4.png" type="Texture" id=33]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk5.png" type="Texture" id=34]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk6.png" type="Texture" id=35]
-[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk7.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/Sprites/Player/Peak/Peak0.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Sprites/Player/Peak/Peak1.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Sprites/Player/Slide/Slide0.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Sprites/Player/Slide/Slide1.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk0.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk1.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk2.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk3.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk4.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk5.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk6.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Sprites/Player/Walk/Walk7.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Sprites/Player/Wall/Wall0.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump0.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/Sprites/Player/Jump/Jump1.png" type="Texture" id=36]
 [ext_resource path="res://WorldLevel/WorldItems/ItemsMenu.tscn" type="PackedScene" id=37]
 [ext_resource path="res://WorldLevel/WorldItems/CollectionMenu.tscn" type="PackedScene" id=38]
 [ext_resource path="res://Sprites/Sprites/Sky.png" type="Texture" id=39]
@@ -65,27 +65,27 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ) ],
 "loop": true,
-"name": "Slide",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ), ExtResource( 25 ) ],
-"loop": true,
 "name": "Peak",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 27 ) ],
+"frames": [ ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
-"name": "Jump",
+"name": "Slide",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "Walk",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 28 ) ],
+"frames": [ ExtResource( 34 ) ],
 "loop": false,
 "name": "Wall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ) ],
+"frames": [ ExtResource( 35 ), ExtResource( 36 ) ],
 "loop": true,
-"name": "Walk",
+"name": "Jump",
 "speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -127,7 +127,7 @@ func _ready():
 #	pass
 "
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1

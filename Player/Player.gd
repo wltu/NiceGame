@@ -12,7 +12,6 @@ const WALL_SLIDE_SLEED = 75
 const MAX_X = 640
 const MAX_Y = 360
 const TIME_GAP = 10
-const MONSTERS = ["Skeleton"]
 const BALL_MOTION = Vector2(400, -600)
 
 var motion = Vector2()
@@ -34,7 +33,7 @@ var left = false
 var run = false
 var walk = false
 
-var testing = false
+var testing = true
 var zoom = 1.5
 
 export (Vector2) var start_pos
@@ -45,6 +44,7 @@ export (PackedScene) var Balls
 func _enter_tree():
 	if self.get_parent().name == "WorldWin":
 		$Camera2D.current = false
+		$Camera2D.visible = false
 		$VictoryCamera.current = true
 	else:
 		if !testing:
@@ -106,7 +106,7 @@ func detect_area():
 	var has_metal = false
 	
 	for body in bodies:
-		for monster_name in MONSTERS:
+		for monster_name in GameVariables.MONSTERS:
 			if body.name.begins_with(monster_name):
 				print("You Died!!")
 				GameVariables.reset()

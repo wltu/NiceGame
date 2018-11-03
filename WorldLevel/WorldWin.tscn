@@ -1,10 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Sprites/Tiles/DirtAutoTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://Sprites/Sprites/Tiles/DirtTileSet.tres" type="TileSet" id=3]
 
-[node name="WorldWin" type="Node"]
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	pass"
+
+[node name="WorldWin" type="Node" index="0"]
+
+script = SubResource( 1 )
 
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
